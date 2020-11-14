@@ -1,0 +1,13 @@
+.select{
+  display: flex;
+  justify-content:center;
+}
+.navi{
+  display: flex;
+  justify-content: center;
+  width:81rpx;
+  height:81rpx;
+  border: 5rpx burlywood solid;
+  border-radius: 5rpx;
+  margin:10rpx;
+}
