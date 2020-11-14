@@ -1,0 +1,191 @@
+.buttonArea{
+  display: flex;
+  justify-content:space-around;
+}
+
+.all{
+  overflow:hidden;
+}
+.journalss{
+  margin-top:30px;
+}
+.movie-content-wrapper{
+  background-color:#68ADEF;
+  padding-top: 50px;
+  border-radius: 16px;
+  margin: 10px;
+  height: 50px;
+}
+.challengeTitle{
+  position: relative;
+  color:white;
+  font-size:25px;
+  font-weight:bold;
+  top:-40px;
+  left:20px;
+}
+.challengeTime{
+  color:white;
+  position: relative;
+  left:-106px;
+  top:-5px;
+}
+.buttonBackGround{
+  width: 47px;
+  height: 47px;
+  line-height: 20px;
+  border-radius: 17px 17px 17px 17px;
+  background-color: rgba(255, 255, 255, 100);
+  color: rgba(249, 255, 255, 100);
+  font-size: 14px;
+  text-align: center;
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.4);
+  font-family: Arial;
+  border: 1px solid rgba(198, 198, 198, 100);
+}
+.buttonImage{
+  position: relative;
+  width: 32px;
+  height: 32px;
+  top: 8px;
+}
+#imageSearch{
+  position: relative;
+  width: 38px;
+  height: 38px;
+  top: 4.5px;
+}
+.addBackGround{
+  width: 341px;
+  height: 211px;
+  line-height: 20px;
+  border-radius: 17px 17px 17px 17px;
+  background-color: rgba(255, 255, 255, 100);
+  color: rgba(255, 255, 255, 100);
+  font-size: 14px;
+  text-align: center;
+  font-family: Arial;
+  border: 1px solid rgba(198, 198, 198, 100);
+  margin:10px auto;
+}
+.noneWxss{
+  display: none;
+}
+/*搜索框css*/
+.weui-search-bar {
+  margin-top: 5px;
+  position: relative;
+  padding: 8px 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  box-sizing: border-box;
+  background-color: white;
+  border-top: 1rpx solid #ffffff;
+  border-bottom: 1rpx solid #ffffff;
+}
+.weui-icon-search_in-box {
+  position: absolute;
+  left: 10px;
+  top: 7px;
+}
+.weui-search-bar__form {
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex: auto;
+          flex: auto;
+  border-radius: 5px;
+  background: #FFFFFF;
+  border: 1rpx solid #E6E6EA;
+}
+.weui-search-bar__box {
+  position: relative;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+}
+.weui-search-bar__input {
+  height: 28px;
+  line-height: 28px;
+  font-size: 14px;
+}
+.weui-search-bar__cancel-btn {
+  margin-left: 10px;
+  line-height: 28px;
+  color: #09BB07;
+  white-space: nowrap;
+}
+
+.addTitle{
+  margin-top: 25px;
+  display: flex;
+  justify-content:space-around;
+}
+.addTitleText{
+  color:#68ADEF;
+  font-size: 25px;
+}
+.addTitleInput{
+  border: 1rpx solid #E6E6EA;
+  color:black;
+  width: 174px;
+  height: 27px;
+}
+
+.addTimeTitle{
+  position: absolute;
+  left:25px;
+  color:#68ADEF;
+  font-size: 25px;
+}
+.datePicker{
+  position: absolute;
+  left:174px;
+  width: 174px;
+  height: 27px;
+  border: 1rpx solid #E6E6EA;
+}
+.addTime{
+  margin-top: 25px;
+  display:flex;
+  justify-content:space-around;
+  color:black;
+}
+.addContentInput{
+  position: absolute;
+  left:174px;
+  width: 174px;
+  height: 27px;
+  border: 1rpx solid #E6E6EA;
+  color:black;
+}
+.addContentText{
+  position: absolute;
+  left:25px;
+  color:#68ADEF;
+  font-size: 25px;
+}
+.addContent{
+  margin-top: 50px;
+  display: flex;
+  justify-content:space-around;
+}
+.journalEdit{
+  width: 40px;
+  height: 40px;
+  position: relative;
+  left: 90px;
+  top: -17px;
+}
+button {
+  background-color:#68ADEF;
+  color:white;
+} 
+.addButton{
+  position: absolute;
+  top: 235px;
+}
+
+
