@@ -1,0 +1,5 @@
+<view>
+<image src="../../image/城堡.png" bindtap="comfirm1"/>
+<image src="../../image/秘事.png" bindtap="comfirm2"/>
+<image src="../../image/获取.png" />
+</view>>
