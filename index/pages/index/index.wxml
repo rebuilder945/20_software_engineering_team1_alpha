@@ -1,0 +1,55 @@
+<view class="all">
+  <view class="buttonArea">
+    <view class="buttonBackGround" id="buttonSearch">
+      <image src="../../image/Image_Search.jpg"  class="buttonImage" id="imageSearch" bindtap="changeSearch"></image>
+    </view>
+    <view class="buttonBackGround" id="buttonAdd">
+      <image src="../../image/Image_Add.jpg"  class="buttonImage" id="imageAdd" bindtap="changeAdd"></image>
+    </view>
+    <view class="buttonBackGround" id="buttonEdit">
+      <image src="../../image/Image_Edit.jpg"  class="buttonImage" id="imageEdit" bindtap="changeEdit"></image>
+    </view>
+  </view>
+
+
+  <!--搜索栏-->
+  <view class="{{searchState}}" > 
+    <view class="weui-search-bar__form"> 
+       <!-- 搜索框 -->
+         <view class="weui-search-bar__box">
+            <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+            <input type="text" class="weui-search-bar__input" placeholder="请输入搜索内容"/>
+          </view>
+    </view>
+        <!-- 搜索按钮,调用搜索查询方法 -->
+    <view class="weui-search-bar__cancel-btn" bindtap='方法名a'>搜索</view>
+  </view>
+    <!--添加栏-->
+    <view class="{{addState}}">
+      <view class="addTitle">
+        <text class="addTitleText">一个小挑战:</text>
+        <input type="text"  bindinput='getInputValue' class="addTitleInput" placeholder="请输入挑战目标"/>
+      </view>
+      <view class="addTime">
+        <view class="addTimeTitle">时间:</view>
+        <picker class="datePicker" mode="date" value="{{date}}" start="2015-09-01" end="2030-09-01" bindchange="bindDateChange">
+          <view class="picker">
+            {{date}}
+          </view>
+        </picker>
+      </view>
+      <view class="addContent">
+        <text class="addContentText">描述一下:</text>
+        <input type="text"  bindinput='getInputValue' class="addContentInput" placeholder="......"/>
+      </view>
+      <button formType="submit" style="width:341px;border-radius: 17px 17px 17px 17px;" class="addButton">确定</button>
+    </view>
+   <!-- 挑战-->
+    <view class="journalss" >
+      <view class="movie-content-wrapper" wx:for="{{Target}}">
+        <text class="challengeTitle">{{item.title}}</text>
+        <text class="challengeTime">{{item.time}}</text>
+        <image class="{{editState}}" src="../../image/Image_Edit.jpg" ></image> 
+      </view>
+    </view>
+</view>
