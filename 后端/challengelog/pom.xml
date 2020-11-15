@@ -8,10 +8,10 @@
         <version>2.4.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.engineer</groupId>
-    <artifactId>challenge</artifactId>
+    <groupId>com.challengelog</groupId>
+    <artifactId>challengelog</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>challenge</name>
+    <name>challengelog</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -19,6 +19,13 @@
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.68</version>
+        </dependency>w
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
