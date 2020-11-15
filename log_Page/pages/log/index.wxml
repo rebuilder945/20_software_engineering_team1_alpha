@@ -9,7 +9,7 @@
 <view class="log">
   <view class="log_item" wx:for="{{logList}}" wx:key="id">
     <view class="content">
-      <text class="date">{{item.time}}</text><text class="story">{{item.plot.plot_content}}</text>
+      <text class="date">{{item.time}}</text><text class="story" bindtap="btnTap1" data-content="{{item.plot.plot_content}}">{{item.plot.plot_title}}</text>
     </view>
     <view class="none"></view>
   </view>

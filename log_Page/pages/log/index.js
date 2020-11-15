@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    myHidden:true,
     logList:[
       {
         "id":4,
@@ -15,7 +16,8 @@ Page({
         "time":"2020-11-14",
         "plot":{
           "plot_id":4,
-          "plot_content":"当科状元"
+          "plot_title":"当科状元",
+          "plot_content":"具体内容为、、、、"
         }
       },
       {
@@ -26,7 +28,8 @@ Page({
         "time":"2020-11-13",
         "plot":{
           "plot_id":3,
-          "plot_content":"科举"
+          "plot_title":"科举",
+          "plot_content":"具体内容为、、、、"
         }
       },
       {
@@ -37,7 +40,8 @@ Page({
         "time":"2020-11-12",
         "plot":{
           "plot_id":2,
-          "plot_content":"读书与练武"
+          "plot_title":"读书与练武",
+          "plot_content":"具体内容为、、、、"
         }
       },
       {
@@ -48,17 +52,46 @@ Page({
         "time":"2020-11-11",
         "plot":{
           "plot_id":1,
-          "plot_content":"我出生啦"
+          "plot_title":"我出生啦",
+          "plot_content":"具体内容为、、、、"
         }
       }
     ]
+  },
+  /*点击事件*/
+  btnTap1:function(event){
+    wx.showModal({
+      title: '剧情',
+      content:event.target.dataset.content,
+      success (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // wx.request({
+    //   url: 'url',
+    //   data: data,
+    //   dataType: "JSON",
+    //   method:"GET",
+    //   responseType: responseType,
+    //   timeout: 0,
+    //   success: (result) => {
+    //     this.setData({
+    //       logList:result
+    //     });
+    //   },
+    //   fail: (res) => {},
+    //   complete: (res) => {},
+    // })
   },
 
   /**
@@ -72,14 +105,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // request({
-    //   url:""
-    //   .then(result=>{
-    //     this.setData({
-    //       logList:result.data.message
-    //     })
-    //   })
-    // })
+
   },
 
   /**
