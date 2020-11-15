@@ -10,29 +10,35 @@ Page({
     editState: "noneWxss",
     addState: "noneWxss",
     Target: [{
+
         title: "第一个目标",
         content: "第一个目标内容",
-        time: "2020年3月"
+        start_time: "2020年3月",
+        end_time:"2020年4月",
       },
       {
         title: "第二个目标",
         content: "第二个目标内容",
-        time: "2020年3月"
+        start_time: "2020年3月",
+        end_time:"2020年4月",
       },
       {
         title: "第三个目标",
         content: "第三个目标内容",
-        time: "2020年3月"
+        start_time: "2020年3月",
+        end_time:"2020年4月",
       },
       {
         title: "第四个目标",
         content: "第四个目标内容",
-        time: "2020年3月"
+        start_time: "2020年3月",
+        end_time:"2020年4月",
       },
       {
         title: "第五个目标",
         content: "第五个目标内容",
-        time: "2020年3月"
+        start_time: "2020年3月",
+        end_time:"2020年4月",
       }
     ]
 
@@ -125,4 +131,21 @@ bindDateChange: function (e) {
     date: e.detail.value
   })
 },
+onLoad: function (options) {
+wx.request({
+  url: '/user/target/history',
+  data:this.user_id,
+  method:"GET",
+  success (res) {
+    console.log(res.data)
+  },
+  fail(res){
+    console.log("fail")
+  },
+  complete: function () {
+    console.log("ffff")
+  }
+
+})
+}
 })
