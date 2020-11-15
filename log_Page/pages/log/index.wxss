@@ -1,4 +1,7 @@
 /* pages/log/index.wxss */
+page{
+  background-color: rgb(231, 231, 212);
+}
 .bkgd{
   padding-bottom: 35rpx;
 }
@@ -13,12 +16,16 @@
   padding-top: 10rpx;
   padding-bottom: 10rpx;
   height: 80rpx;
-  border: thin green solid;
+  border: medium green solid;
   display: flex;
   justify-content: space-between;
 }
 .none{
   height:50rpx;
+}
+.date{
+  font-weight: lighter;
+  font-size: small;
 }
 .story{
   width: 256rpx;
@@ -27,6 +34,7 @@
   background-color: rgb(22, 153, 230);
   color:white;
   text-align: center;
+  line-height: 190%;
   position: relative;
   margin-right: 0%;
 }
