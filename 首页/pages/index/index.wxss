@@ -21,14 +21,14 @@
   color:white;
   font-size:25px;
   font-weight:bold;
-  top:-40px;
+  top:-30px;
   left:20px;
 }
 .challengeTime{
   color:white;
   position: relative;
   left:-106px;
-  top:-5px;
+  top:5px;
 }
 .buttonBackGround{
   width: 47px;
@@ -176,8 +176,8 @@
   width: 40px;
   height: 40px;
   position: relative;
-  left: 90px;
-  top: -17px;
+  left: 290px;
+  top: -50px;
 }
 button {
   background-color:#68ADEF;
