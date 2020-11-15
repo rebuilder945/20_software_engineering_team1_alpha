@@ -7,7 +7,11 @@ Page({
    */
   data: {
     myHidden:true,
-    logList:[
+    mainStory:({
+      "image_url":"",
+      "story_url":"",
+    }),
+    logList:([
       {
         "id":4,
         "log_id":4,
@@ -18,7 +22,10 @@ Page({
           "plot_id":4,
           "plot_title":"当科状元",
           "plot_content":"具体内容为、、、、"
-        }
+        },
+        "year":"",
+        "month":"",
+        "day":""
       },
       {
         "id":3,
@@ -30,7 +37,10 @@ Page({
           "plot_id":3,
           "plot_title":"科举",
           "plot_content":"具体内容为、、、、"
-        }
+        },
+        "year":"",
+        "month":"",
+        "day":""
       },
       {
         "id":2,
@@ -42,7 +52,10 @@ Page({
           "plot_id":2,
           "plot_title":"读书与练武",
           "plot_content":"具体内容为、、、、"
-        }
+        },
+        "year":"",
+        "month":"",
+        "day":""
       },
       {
         "id":1,
@@ -54,9 +67,12 @@ Page({
           "plot_id":1,
           "plot_title":"我出生啦",
           "plot_content":"具体内容为、、、、"
-        }
+        },
+        "year":"",
+        "month":"",
+        "day":""
       }
-    ]
+    ])
   },
   /*点击事件*/
   btnTap1:function(event){
@@ -77,21 +93,34 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // wx.request({
-    //   url: 'url',
-    //   data: data,
-    //   dataType: "JSON",
-    //   method:"GET",
-    //   responseType: responseType,
-    //   timeout: 0,
-    //   success: (result) => {
-    //     this.setData({
-    //       logList:result
-    //     });
-    //   },
-    //   fail: (res) => {},
-    //   complete: (res) => {},
-    // })
+    wx.request({
+      url: 'api.imix.cn/',
+      dataType: "JSON",
+      method:"GET",
+      success: (result) => {
+        this.setData({
+          logList:result
+        });
+      },
+      fail: (res) => {
+        console.log("无法获得日志信息的数据")
+      },
+      complete: (res) => {},
+    }),
+    wx.request({
+      url: 'api.imix.cn/',
+      dataType: "JSON",
+      method:"GET",
+      success: (result) => {
+        this.setData({
+          mainStory:result
+        });
+      },
+      fail: (res) => {
+        console.log("无法获得主要剧本的数据")
+      },
+      complete: (res) => {},
+    })
   },
 
   /**
@@ -142,4 +171,6 @@ Page({
   onShareAppMessage: function () {
 
   }
+
+
 })
