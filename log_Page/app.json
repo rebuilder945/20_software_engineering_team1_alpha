@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/log/index",
+    "pages/story/index",
+    "pages/index/search",
+    "pages/index/add",
+    "pages/index/edit"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "我的挑战日志",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/log/index",
+        "text": "日志",
+        "iconPath": "icons/logs.png",
+        "selectedIconPath": "icons/logs_select.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "挑战",
+        "iconPath": "icons/challenge.png",
+        "selectedIconPath": "icons/challenge_select.png"
+      },
+      {
+        "pagePath": "pages/story/index",
+        "text": "剧本",
+        "iconPath": "icons/story.png",
+        "selectedIconPath": "icons/story_select.png"
+      }
+    ],
+    "color": "#ADD8E6",
+    "selectedColor": "#FF00FF"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

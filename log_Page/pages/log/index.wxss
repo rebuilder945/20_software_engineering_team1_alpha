@@ -1,0 +1,32 @@
+/* pages/log/index.wxss */
+.bkgd{
+  padding-bottom: 35rpx;
+}
+.log{
+  padding-top: 10rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+}
+.content{
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  height: 80rpx;
+  border: thin green solid;
+  display: flex;
+  justify-content: space-between;
+}
+.none{
+  height:50rpx;
+}
+.story{
+  width: 256rpx;
+  height:auto;
+  border-radius: 10rpx;
+  background-color: rgb(22, 153, 230);
+  color:white;
+  text-align: center;
+  position: relative;
+  margin-right: 0%;
+}
