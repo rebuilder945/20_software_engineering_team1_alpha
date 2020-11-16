@@ -7,70 +7,55 @@ Page({
    */
   data: {
     myHidden:true,
-    mainStory:({
-      "image_url":"",
-      "story_url":"",
+    main_line:({
+      "line_id":1,
+      "line_image":"../../pts/story.png",
+      "line_url":"../story/index"
     }),
     logList:([
       {
-        "id":4,
-        "log_id":4,
         "user_id":4,
-        "story_id":4,
+        "log_id":4,
+        "line_id":4,
         "time":"2020-11-14",
-        "plot":{
-          "plot_id":4,
-          "plot_title":"当科状元",
-          "plot_content":"具体内容为、、、、"
-        },
-        "year":"",
-        "month":"",
-        "day":""
+        "story":{
+          "story_id":4,
+          "story_title":"当科状元",
+          "story_content":"具体内容为、、、、"
+        }
       },
       {
-        "id":3,
-        "log_id":3,
         "user_id":3,
-        "story_id":3,
+        "log_id":3,
+        "line_id":3,
         "time":"2020-11-13",
-        "plot":{
-          "plot_id":3,
-          "plot_title":"科举",
-          "plot_content":"具体内容为、、、、"
-        },
-        "year":"",
-        "month":"",
-        "day":""
+        "story":{
+          "story_id":3,
+          "story_title":"科举",
+          "story_content":"具体内容为、、、、"
+        }
       },
       {
-        "id":2,
-        "log_id":2,
         "user_id":2,
-        "story_id":2,
+        "log_id":2,
+        "line_id":2,
         "time":"2020-11-12",
-        "plot":{
-          "plot_id":2,
-          "plot_title":"读书与练武",
-          "plot_content":"具体内容为、、、、"
-        },
-        "year":"",
-        "month":"",
-        "day":""
+        "story":{
+          "story_id":2,
+          "story_title":"读书与练武",
+          "story_content":"具体内容为、、、、"
+        }
       },
       {
-        "id":1,
-        "log_id":1,
         "user_id":1,
-        "story_id":1,
+        "log_id":1,
+        "line_id":1,
         "time":"2020-11-11",
-        "plot":{
-          "plot_id":1,
-          "plot_title":"我出生啦",
-          "plot_content":"具体内容为、、、、"
-        },
-        "year":"",
-        "month":"",
-        "day":""
+        "story":{
+          "story_id":1,
+          "story_title":"我出生啦",
+          "story_content":"具体内容为、、、、"
+        }
       }
     ])
   },
@@ -96,28 +81,19 @@ Page({
     wx.request({
       url: 'api.imix.cn/',
       dataType: "JSON",
-      method:"GET",
+      data:{
+        "user_id":1,
+        "line_id":1
+      },
+      method:"POST",
       success: (result) => {
         this.setData({
-          logList:result
+          logList:result.message,
+          main_line:result.log
         });
       },
       fail: (res) => {
-        console.log("无法获得日志信息的数据")
-      },
-      complete: (res) => {},
-    }),
-    wx.request({
-      url: 'api.imix.cn/',
-      dataType: "JSON",
-      method:"GET",
-      success: (result) => {
-        this.setData({
-          mainStory:result
-        });
-      },
-      fail: (res) => {
-        console.log("无法获得主要剧本的数据")
+        console.log("无法获得数据")
       },
       complete: (res) => {},
     })

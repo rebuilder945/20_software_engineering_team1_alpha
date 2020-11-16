@@ -1,15 +1,16 @@
 <!-- 主要剧情的入口 -->
 <view class="bkgd">
-  <navigator url="../story/index" open-type="switchTab">
-    <image src="../../pts/story.png" style="height:356rpx;weight:100%;"></image>
+  <navigator url="{{main_line.line_url}}" open-type="switchTab">
+    <image src="{{main_line.line_image}}" style="height:356rpx;weight:100%;"></image>
   </navigator>
 </view>
 
 <!-- 显示日志具体信息 -->
 <view class="log">
-  <view class="log_item" wx:for="{{logList}}" wx:key="id">
+  <view class="log_item" wx:for="{{logList}}" wx:key="log_id">
     <view class="content">
-      <text class="date">{{item.time}}</text><text class="story" bindtap="btnTap1" data-content="{{item.plot.plot_content}}">{{item.plot.plot_title}}</text>
+      <text class="date">{{item.time}}</text>
+      <text class="story" bindtap="btnTap1" data-content="{{item.story.story_content}}">{{item.story.story_title}}</text>
     </view>
     <view class="none"></view>
   </view>
