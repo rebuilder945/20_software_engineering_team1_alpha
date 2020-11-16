@@ -27,8 +27,8 @@
 .challengeTime{
   color:white;
   position: relative;
-  left:-106px;
-  top:5px;
+  left: 20px;
+  top:-20px;
 }
 .buttonBackGround{
   width: 47px;
@@ -143,9 +143,20 @@
 .datePicker{
   position: absolute;
   left:174px;
-  width: 174px;
+  width: 80px;
   height: 27px;
   border: 1rpx solid #E6E6EA;
+  text-align:center;
+  line-height:27px;
+}
+.timePicker{
+  position: absolute;
+  left:260px;
+  width: 80px;
+  height: 27px;
+  border: 1rpx solid #E6E6EA;
+  text-align:center;
+  line-height:27px;
 }
 .addTime{
   margin-top: 25px;
