@@ -3,7 +3,6 @@ package com.challengelog.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.challengelog.bean.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -27,19 +26,20 @@ public class UserController {
         return list_maps;
     }
 
-    @ResponseBody
+
     @RequestMapping("/register")
     public String register(@RequestBody JSONObject jsonParam) {
-        System.out.println(jsonParam.toJSONString());
-        int userid = Integer.parseInt(jsonParam.get("userid").toString());
-        System.out.println(userid);
-        String open_id = "temp";
-        User user = new User(userid, open_id, "nick_name", "none", "男", DateFormat.getInstance());
-        String sql = "insert into user values(" + user.getId() + "," + user.getOpen_id() + ","
-                + user.getNick_name() + "," + user.getAvatar_url() + "," + user.getGender() + ","
-                + user.getCreate_time() + ");";
-        System.out.println(sql);
-
+//        System.out.println(jsonParam.toJSONString());
+//        int userid = Integer.parseInt(jsonParam.get("userid").toString());
+//        System.out.println(userid);
+//        String open_id = "temp";
+//        User user = new User(userid, open_id, "nick_name", "none", "男", DateFormat.getInstance());
+////        System.out.println(user);
+//        String sql = "insert into user values(" + "'" + user.getId() + "," + user.getOpen_id() + ","
+//                + user.getNick_name() + "," + user.getAvatar_url() + "," + user.getGender() + ","
+//                + user.getCreate_time() + ");";
+//        System.out.println(sql);
+//
 ////        String sql = "insert into user values(3,'open_id','nick_name', 'avatar_url', '男', current_time);";
 //        System.out.println(jdbcTemplate.update(sql));
 //        String sql1 = "select * from challenges;";
@@ -52,22 +52,55 @@ public class UserController {
     }
 
     @RequestMapping("/login")
-    public String userlogin() {
-        return "userlogin";
+    public String userlogin(@RequestBody JSONObject jsonParam) {
+        System.out.println(jsonParam.toJSONString());
+        String user_id = jsonParam.get("user_id").toString();
+        System.out.println(user_id);
+        String sql = "select * from user where id = " + "'" + user_id + "'" + ";"  ;
+        List<Map<String,Object>> list_maps = jdbcTemplate.queryForList(sql);
+        JSONObject jsonObject = new JSONObject();
+        if (!list_maps.isEmpty()) {
+            jsonObject.put("msg", "登录成功");
+            jsonObject.put("status",true);
+        } else {
+            jsonObject.put("msg", "登录失败");
+            jsonObject.put("status",false);
+        }
+        return jsonObject.toJSONString();
     }
 
     @RequestMapping("/update")
     public String update() {
+
         return "update";
     }
 
     @RequestMapping("/target/add")
-    public String targetadd() {
-        return "targetadd";
+    public String targetadd(@RequestBody JSONObject jsonParam) {
+//        System.out.println(jsonParam);
+        String user_id = jsonParam.get("user_id").toString();
+        String contant = jsonParam.getJSONObject("target").get("content").toString();
+        String title = jsonParam.getJSONObject("target").get("title").toString();
+//        System.out.println(jsonParam.getJSONObject("target").get("title"));
+//        String sql = "select challenges.id from challenges, user where challenges.user_id = user.id and ;";
+//        List<Map<String,Object>> list_maps = jdbcTemplate.queryForList(sql);
+        JSONObject jsonObject = new JSONObject();
+        if (true) {
+            String sql = "insert into challenges values (0," + "'" + user_id + "'" + ", 1, " +"'" +  contant + "'," + "current_time, current_time, 0, 'tags', 0, " + "'" + title + "'" + ");";
+            System.out.println(sql);
+            jdbcTemplate.update(sql);
+            jsonObject.put("msg", "新增目标成功");
+            jsonObject.put("status",true);
+        } else {
+            jsonObject.put("msg", "新增目标失败");
+            jsonObject.put("status",false);
+        }
+        return jsonObject.toJSONString();
     }
 
     @RequestMapping("/target/complete")
     public String targetcomplete() {
+
         return "targetcomplete";
     }
 
@@ -92,8 +125,9 @@ public class UserController {
     }
 
     @RequestMapping("/line/story/find")
-    public String linestoryfind() {
-        return "linestoryfind";
+    public String linestoryfind(@RequestBody JSONObject jsonParam) {
+
+        return jsonParam.toJSONString();
     }
 
     @RequestMapping("/line/story/add")
