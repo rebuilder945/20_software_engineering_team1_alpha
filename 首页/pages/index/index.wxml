@@ -11,7 +11,6 @@
     </view>
   </view>
 
-
   <!--搜索栏-->
   <view class="{{searchState}}" > 
     <view class="weui-search-bar__form"> 
@@ -22,34 +21,44 @@
           </view>
     </view>
         <!-- 搜索按钮,调用搜索查询方法 -->
-    <view class="weui-search-bar__cancel-btn" bindtap='方法名a'>搜索</view>
+    <view class="weui-search-bar__cancel-btn" bindtap='search'>搜索</view>
   </view>
+
     <!--添加栏-->
     <view class="{{addState}}">
       <view class="addTitle">
         <text class="addTitleText">一个小挑战:</text>
-        <input type="text"  bindinput='getInputValue' class="addTitleInput" placeholder="请输入挑战目标"/>
+        <input type="text"  bindinput='GetTargetValueTitle' class="addTitleInput" placeholder="请输入挑战目标"/>
       </view>
       <view class="addTime">
         <view class="addTimeTitle">时间:</view>
-        <picker class="datePicker" mode="date" value="{{date}}" start="2015-09-01" end="2030-09-01" bindchange="bindDateChange">
+        <picker class="datePicker" mode="date" value="{{end_date}}" start="2015-09-01" end="2030-09-01" bindchange="GetDateChange">
           <view class="picker">
-            {{date}}
+            {{end_date}}
+          </view>
+        </picker>
+        <picker class="timePicker" mode="time" value="{{end_time}}" bindchange="GetTimeChange" >
+          <view class="picker">
+            {{end_time}}
           </view>
         </picker>
       </view>
       <view class="addContent">
         <text class="addContentText">描述一下:</text>
-        <input type="text"  bindinput='getInputValue' class="addContentInput" placeholder="......"/>
+        <input type="text"  bindinput='GetTargetValueContent' class="addContentInput" placeholder="......"/>
       </view>
-      <button formType="submit" style="width:341px;border-radius: 17px 17px 17px 17px;" class="addButton">确定</button>
+      <button formType="submit" style="width:341px;border-radius: 17px 17px 17px 17px;" class="addButton" bindtap="CreateNewTarget">确定</button>
     </view>
    <!-- 挑战-->
     <view class="journalss" >
-      <view class="movie-content-wrapper" wx:for="{{Target}}">
+      <view class="movie-content-wrapper" wx:for="{{Target}}" wx:key="*this">
         <text class="challengeTitle">{{item.title}}</text>
-        <text class="challengeTime">{{item.time}}</text>
-        <image class="{{editState}}" src="../../image/Image_Edit.jpg" ></image> 
+        <view>        
+          <text class="challengeTime">{{item.start_time}}</text>
+        </view>
+        <view>  <image class="{{editState}}" src="../../image/Image_Edit.jpg" ></image> 
+        <image class="{{completeState}}" src="../../image/Image_complete.png"></image>
+        </view>
       </view>
     </view>
 </view>
