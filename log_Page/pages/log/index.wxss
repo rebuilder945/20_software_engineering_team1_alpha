@@ -1,22 +1,26 @@
 /* pages/log/index.wxss */
+@import '../../styles/stylesheet.wxss';
 page{
-  background-color: rgb(231, 231, 212);
+  background-color:#F0F0F0;
 }
 .bkgd{
   padding-bottom: 35rpx;
 }
+
 .log{
   padding-top: 10rpx;
   padding-left: 10rpx;
   padding-right: 10rpx;
+  
 }
 .content{
+  background-color: white;
   padding-left: 10rpx;
   padding-right: 10rpx;
   padding-top: 10rpx;
   padding-bottom: 10rpx;
-  height: 80rpx;
-  border: medium green solid;
+  height: 100rpx;
+  
   display: flex;
   justify-content: space-between;
 }
@@ -25,16 +29,18 @@ page{
 }
 .date{
   font-weight: lighter;
-  font-size: small;
+  font-size: medium;
 }
 .story{
+  font-family: 'FZGongYHS-R-GB';
+  font-size: 40rpx;
   width: 256rpx;
   height:auto;
-  border-radius: 10rpx;
-  background-color: rgb(22, 153, 230);
+  border-radius: 25rpx;
+  background-color: #258AFE;
   color:white;
   text-align: center;
-  line-height: 190%;
+  line-height: 250%;
   position: relative;
   margin-right: 0%;
 }

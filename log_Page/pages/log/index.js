@@ -7,75 +7,41 @@ Page({
    */
   data: {
     myHidden:true,
-    mainStory:({
-      "image_url":"",
-      "story_url":"",
+    main_line:({
+      "line_id":1,
+      "line_image":"../../pts/story.png",
+      "line_url":"../story/index"
     }),
     logList:([
       {
-        "id":4,
-        "log_id":4,
-        "user_id":4,
-        "story_id":4,
-        "time":"2020-11-14",
-        "plot":{
-          "plot_id":4,
-          "plot_title":"当科状元",
-          "plot_content":"具体内容为、、、、"
-        },
-        "year":"",
-        "month":"",
-        "day":""
+        "diary_id":"4",
+        "title":"日记4",
+        "time":"2020-4-4",
+        "content":"日记内容"
       },
       {
-        "id":3,
-        "log_id":3,
-        "user_id":3,
-        "story_id":3,
-        "time":"2020-11-13",
-        "plot":{
-          "plot_id":3,
-          "plot_title":"科举",
-          "plot_content":"具体内容为、、、、"
-        },
-        "year":"",
-        "month":"",
-        "day":""
+        "diary_id":"3",
+        "title":"日记3",
+        "time":"2020-3-3",
+        "content":"日记内容"
       },
       {
-        "id":2,
-        "log_id":2,
-        "user_id":2,
-        "story_id":2,
-        "time":"2020-11-12",
-        "plot":{
-          "plot_id":2,
-          "plot_title":"读书与练武",
-          "plot_content":"具体内容为、、、、"
-        },
-        "year":"",
-        "month":"",
-        "day":""
+        "diary_id":"2",
+        "title":"日记2",
+        "time":"2020-2-2",
+        "content":"日记内容"
       },
       {
-        "id":1,
-        "log_id":1,
-        "user_id":1,
-        "story_id":1,
-        "time":"2020-11-11",
-        "plot":{
-          "plot_id":1,
-          "plot_title":"我出生啦",
-          "plot_content":"具体内容为、、、、"
-        },
-        "year":"",
-        "month":"",
-        "day":""
+        "diary_id":"1",
+        "title":"日记1",
+        "time":"2020-1-1",
+        "content":"日记内容"
       }
     ])
   },
   /*点击事件*/
   btnTap1:function(event){
+
     wx.request({
       url: 'http://localhost:8080/user/line/story/find',
       dataType: "JSON",
@@ -98,9 +64,10 @@ Page({
         console.log("dd");
       },
     }),
+
     wx.showModal({
       title: '剧情',
-      content:event.target.dataset.content,
+      content:event.currentTarget.dataset.content,
       success (res) {
         if (res.confirm) {
           console.log('用户点击确定')
@@ -115,21 +82,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
     wx.request({
       url: 'api.imix.cn/',
       dataType: "JSON",
-      method:"GET",
-      success: (result) => {
+      data:{
+        "user_id":1
+      },
+      method:"POST",
+      success: (result) => {log
+
         this.setData({
-          mainStory:result
+          logList:result.log,
+          main_line:result.main_line
         });
       },
       fail: (res) => {
-        console.log("无法获得主要剧本的数据")
+        console.log("无法获得数据")
       },
       complete: (res) => {},
     })
+    // this.draw_line;
   },
 
   /**
@@ -180,6 +153,14 @@ Page({
   onShareAppMessage: function () {
 
   }
+  // draw_line:function(){
+  //   const ctx = wx.createCanvasContext('myCanvas');
+  //   ctx.moveTo(10, 10);
+  //   ctx.rect(10, 10, 100, 50);
+  //   ctx.lineTo(110, 60);
+  //   ctx.stroke();
+  //   ctx.draw();
+  // }
 
 
 })
