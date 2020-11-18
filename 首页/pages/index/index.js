@@ -130,6 +130,7 @@ Page({
       this.setData({
         editState: "noneWxss",
         addState: "addBackGround",
+        completeState: "journalEdit",
         nowType: 2,
       })
     }

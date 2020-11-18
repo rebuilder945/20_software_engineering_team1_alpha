@@ -51,14 +51,16 @@
     </view>
    <!-- 挑战-->
     <view class="journalss" >
-      <view class="movie-content-wrapper" wx:for="{{Target}}" wx:key="*this">
+      <view  wx:for="{{Target}}" wx:key="*this">
+      <view class="movie-content-wrapper">
         <text class="challengeTitle">{{item.title}}</text>
         <view>        
           <text class="challengeTime">{{item.start_time}}</text>
         </view>
-        <view>  <image class="{{editState}}" src="../../image/Image_Edit.jpg" ></image> 
+        <view class="editArea">  <image class="{{editState}}" src="../../image/Image_Edit.jpg" ></image> 
         <image class="{{completeState}}" src="../../image/Image_complete.png"></image>
         </view>
       </view>
+     </view>
     </view>
 </view>
