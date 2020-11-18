@@ -7,6 +7,10 @@ page{
   padding-bottom: 35rpx;
 }
 
+
+
+
+
 .log{
   padding-top: 10rpx;
   padding-left: 10rpx;

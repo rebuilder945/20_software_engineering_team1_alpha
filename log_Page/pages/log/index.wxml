@@ -1,7 +1,7 @@
 <!-- 主要剧情的入口 -->
 <view class="bkgd">
-  <navigator url="{{main_line.line_url}}" open-type="switchTab">
-    <image src="{{main_line.line_image}}" style="height:356rpx;width:100%;"></image>
+  <navigator url="" open-type="switchTab">
+    <image src="{{main_line.cover_url}}" style="height:356rpx;width:100%;"></image>
   </navigator>
 </view>
 
@@ -10,11 +10,13 @@
   <view class="log">
     <view class="content">
       <text class="date">今天</text>
-      <text class="story">编辑</text>
+      <text class="story" >编辑</text>
     </view>
   </view>
 </view>
 <view class="none"></view>
+
+<!-- 添加 -->
 
 <!-- 显示日志具体信息 -->
 <view class="log">

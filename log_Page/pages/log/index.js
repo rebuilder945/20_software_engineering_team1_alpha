@@ -1,16 +1,20 @@
 // pages/log/index.js
+var utils = require('../../utils/util.js');
 import { request } from "../../request/index.js";
+import util from "../../utils/util.js";
 Page({
 
   /**
    * 页面的初始数据
    */
+
   data: {
-    myHidden:true,
+    
+    time:"",
+    
     main_line:({
-      "line_id":1,
-      "line_image":"../../pts/story.png",
-      "line_url":"../story/index"
+      "story_id":1,
+      "cover_url":"../../pts/story.png"
     }),
     logList:([
       {
@@ -66,10 +70,9 @@ Page({
         "user_id":1
       },
       method:"POST",
-      success: (result) => {log
+      success: (result) => {
         this.setData({
-          logList:result.log,
-          main_line:result.main_line
+          logList:result,
         });
       },
       fail: (res) => {
@@ -77,7 +80,18 @@ Page({
       },
       complete: (res) => {},
     })
-    // this.draw_line;
+    wx.request({
+      url: 'api.iminx.cn',
+      data:{
+        "user_id":1
+      },
+      dataType:"JSON",
+      method:"POST",
+      success:(result)=>{
+        main_line:result
+      }
+    })
+
   },
 
   /**
@@ -127,7 +141,7 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
   // draw_line:function(){
   //   const ctx = wx.createCanvasContext('myCanvas');
   //   ctx.moveTo(10, 10);
@@ -136,6 +150,20 @@ Page({
   //   ctx.stroke();
   //   ctx.draw();
   // }
-
+  // newLog:function () {
+  //   this.setData({
+  //     time:utils.formatTime(new Date())
+  //   });
+  //   if(this.data.hide=="noneCss"){
+  //     this.setData({
+  //       hide:"nothing"
+  //     })
+  //   }
+  //   else{
+  //     this.setData({
+  //       hide:"noneCss"
+  //     })
+  //   }
+  // }
 
 })

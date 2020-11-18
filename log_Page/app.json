@@ -5,7 +5,8 @@
     "pages/story/index",
     "pages/index/search",
     "pages/index/add",
-    "pages/index/edit"
+    "pages/index/edit",
+    "pages/log/new_log"
   ],
   "window": {
     "backgroundTextStyle": "light",
