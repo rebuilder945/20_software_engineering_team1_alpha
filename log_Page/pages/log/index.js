@@ -41,7 +41,30 @@ Page({
   },
   /*点击事件*/
   btnTap1:function(event){
-    // console.log(event)
+
+    wx.request({
+      url: 'http://localhost:8080/user/line/story/find',
+      dataType: "JSON",
+      method:"POST",
+      data: {
+        "user_id":"abc1234",
+        "line_id":"1",
+        "story_id":"1919810"
+      },
+      success: (result) => {
+        console.log(result);
+        // this.setData({
+        //   logList:result
+        // });
+      },
+      fail: (res) => {
+        console.log("无法获得日志信息的数据")
+      },
+      complete: (res) => {
+        console.log("dd");
+      },
+    }),
+
     wx.showModal({
       title: '剧情',
       content:event.currentTarget.dataset.content,
@@ -59,6 +82,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
     wx.request({
       url: 'api.imix.cn/',
       dataType: "JSON",
@@ -67,6 +91,7 @@ Page({
       },
       method:"POST",
       success: (result) => {log
+
         this.setData({
           logList:result.log,
           main_line:result.main_line
