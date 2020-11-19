@@ -1,0 +1,20 @@
+<view class="all">
+  <view class="buttonArea">
+    <view class="buttonBackGround" id="buttonSearch">
+      <image src="../../image/Image_Search.jpg"  class="buttonImage" id="imageSearch"></image>
+    </view>
+    <view class="buttonBackGround" id="buttonAdd">
+      <image src="../../image/Image_Add.jpg"  class="buttonImage" id="imageAdd"></image>
+    </view>
+    <view class="buttonBackGround" id="buttonEdit">
+      <image src="../../image/Image_Edit.jpg"  class="buttonImage" id="imageEdit"></image>
+    </view>
+  </view>
+    <view class="journalss" >
+      <view class="movie-content-wrapper" wx:for="{{Target}}">
+        <text class="challengeTitle">{{item.title}}</text>
+        <text class="challengeTime">{{item.time}}</text>
+      <!--<image src="../../image/true.png"></image>--> 
+      </view>
+    </view>
+</view>

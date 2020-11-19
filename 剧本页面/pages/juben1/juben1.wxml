@@ -1,0 +1,32 @@
+<!--pages/welcome/welcome.wxml-->
+<view class="stars">
+<block wx:for="{{stararray}}" wx:key="stararray" wx:for-item="item" wx:for-index="index">
+<view class="star" style="transform-origin: 0px 0px {{item.curR}}px; transform: translate3d(0px, 0px, {{item.curR}}px) rotateY({{item.rotateY}}deg) rotateX({{item.rotateX}}deg) scale({{item.s}}, {{item.s}});"></view>
+</block>
+</view>
+<view class="companyBox">
+<view class="animate one">
+<text>埃</text>
+<text>斯</text>
+<text>顿</text>
+<text>城</text>
+<text>堡</text>
+</view>
+</view>
+<view >
+  123
+  </view>
+<view class="story">
+<view>王与后的第三个孩子依旧是个女孩。</view>
+<view>Kim出生的那个闷热的夏夜，国王坐在城堡花园的凉亭里，听了侍从的报告，撇着嘴百般聊赖，并不想挪动一下去看看病弱的妻子。</view>
+<view>突然，背后有一股凉气袭来，国主汗毛到竖，转过身，看到一个肤色苍白，面覆黑纱的女子，头上的血红色王冠格外阴森醒目。</view>
+<view>她警告国主若想要家族无虞，国家平安，就不要再打要儿子的注意。</view>
+<view>但当国王的情人Lady Green生下一个儿子后，国王大喜过望，毫不犹豫的为“私生子”正了名，尊之为太子。</view>
+<view>但Jack并不是国主的孩子。</view>
+<view>东窗事发，Lady Green在又一次偷情中被二公主Anne当场撞见，Jack的身份受到怀疑，被关押进了湖心岛的监狱。</view>
+</view>
+<view class="stars2">
+<block wx:for="{{stararray}}" wx:key="stararray" wx:for-item="item" wx:for-index="index">
+<view class="star" style="transform-origin: 0px 0px {{item.curR}}px; transform: translate3d(0px, 0px, {{item.curR}}px) rotateY({{item.rotateY}}deg) rotateX({{item.rotateX}}deg) scale({{item.s}}, {{item.s}});"></view>
+</block>
+</view>
