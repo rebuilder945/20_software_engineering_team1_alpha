@@ -1,11 +1,12 @@
 // pages/log/new_log.js
+var utils = require('../../utils/util.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    new_log:({}),
   },
 
   /**
@@ -62,5 +63,34 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  create_newLog:function(event){
+    // console.log(event);
+    // console.log(event.detail.value.title)
+    var newLog = new Object();
+    var key1 = "title";
+    var key2 = "content";
+    var key3 = "time";
+    var value1 = event.detail.value.title;
+    var value2 = event.detail.value.content;
+    var value3 = utils.formatTime(new Date()).split(' ')[0];
+    newLog[key1] = value1;
+    newLog[key2] = value2;
+    newLog[key3] = value3;
+    // newLog.push({"title":event.detail.value.title,"content":event.detail.value.content,"time":utils.formatTime(new Date()).split(' ')[0]});
+    console.log(utils.formatTime(new Date()));
+    console.log(newLog);
+    this.setData({
+      new_log:newLog
+    })
+  },
+  transmitNew:function(){
+    wx.request({
+      url: 'api.iminx.cn',
+      data:this.data.new_log,
+      datatype:"JSON",
+      method:"POST",
+      success:function(res){}
+    })
   }
 })

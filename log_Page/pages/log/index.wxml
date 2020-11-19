@@ -10,7 +10,7 @@
   <view class="log">
     <view class="content">
       <text class="date">今天</text>
-      <text class="story" >编辑</text>
+      <navigator class="beUrl" url="new_log">编辑</navigator>
     </view>
   </view>
 </view>
