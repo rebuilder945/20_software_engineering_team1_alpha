@@ -68,6 +68,12 @@
         {
           "name": "日志",
           "pathName": "pages/log/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "new_log",
+          "pathName": "pages/log/new_log",
           "scene": null
         }
       ]

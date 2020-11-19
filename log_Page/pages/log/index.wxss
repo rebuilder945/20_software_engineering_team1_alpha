@@ -7,6 +7,10 @@ page{
   padding-bottom: 35rpx;
 }
 
+
+
+
+
 .log{
   padding-top: 10rpx;
   padding-left: 10rpx;
@@ -20,7 +24,7 @@ page{
   padding-top: 10rpx;
   padding-bottom: 10rpx;
   height: 100rpx;
-  
+  border-radius: 36rpx;
   display: flex;
   justify-content: space-between;
 }
@@ -43,4 +47,14 @@ page{
   line-height: 250%;
   position: relative;
   margin-right: 0%;
+}
+.beUrl{
+  font-family: 'FZGongYHS-R-GB';
+  width: 256rpx;
+  font-size: 40rpx;
+  background-color: #258AFE;
+  border-radius: 25rpx;
+  line-height: 250%;
+  color:white;
+  text-align: center;
 }
