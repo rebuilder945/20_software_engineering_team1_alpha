@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.challengelog.mapper.DiaryMapper">
+    <select id="queryDiaryById" parameterType="int" resultType="Diary">
+        select *
+        from diary
+        where id = #{id};
+    </select>
+    <insert id="insertDiary" parameterType="Diary">
+        insert into diary(user_id, story_id, time, content_plot_id, content_userdefine)
+        values (#{user_id}, #{story_id}, #{time}, #{content_plot_id}, #{content_userdefine});
+    </insert>
+    <update id="updateDiary" parameterType="Diary">
+        update diary
+        set content_userdefine = #{content_userdefine};
+    </update>
+    <delete id="deleteDiaryById">
+        delete from diary where id = #{id};
+    </delete>
+</mapper>
