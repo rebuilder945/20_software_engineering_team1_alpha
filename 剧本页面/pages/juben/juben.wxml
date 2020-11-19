@@ -1,5 +1,5 @@
 <view>
-<image src="../../image/城堡.png" bindtap="comfirm1"/>
-<image src="../../image/秘事.png" bindtap="comfirm2"/>
+<image src="../../image/城堡.png" bindtap="comfirm1" data-comfirm1="{{0}}" />
+<image src="../../image/秘事.png" bindtap="comfirm2" data-comfirm2="{{0}}" />
 <image src="../../image/获取.png" />
-</view>>
+</view>
