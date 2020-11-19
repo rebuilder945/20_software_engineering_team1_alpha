@@ -4,7 +4,7 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": false,
+    "urlCheck": true,
     "es6": true,
     "enhance": false,
     "postcss": true,
@@ -32,14 +32,12 @@
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
     "packNpmManually": false,
-    "packNpmRelationList": [],
-    "enableEngineNative": false,
-    "minifyWXSS": true
+    "packNpmRelationList": []
   },
   "compileType": "miniprogram",
-  "libVersion": "2.14.0",
-  "appid": "wx7a9c6398ec911c19",
-  "projectname": "%E6%88%91%E7%9A%84%E6%8C%91%E6%88%98%E6%97%A5%E5%BF%97_period1",
+  "libVersion": "2.13.2",
+  "appid": "wx518beaa0924cb723",
+  "projectname": "%E9%A6%96%E9%A1%B5",
   "debugOptions": {
     "hidedInDevtools": []
   },
@@ -48,32 +46,33 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
     "plugin": {
+      "current": -1,
       "list": []
     },
     "game": {
+      "current": -1,
       "list": []
     },
     "gamePlugin": {
+      "current": -1,
       "list": []
     },
     "miniprogram": {
+      "current": -1,
       "list": [
         {
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "日志",
-          "pathName": "pages/log/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "new_log",
-          "pathName": "pages/log/new_log",
+          "id": -1,
+          "name": "pages/logs/logs",
+          "pathName": "pages/logs/logs",
           "scene": null
         }
       ]
