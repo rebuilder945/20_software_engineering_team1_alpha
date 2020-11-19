@@ -8,3 +8,4 @@ spring:
 mybatis:
   type-aliases-package: com.challengelog.pojo
   mapper-locations: classpath:challengelog/mapper/*.xml
+

@@ -1,0 +1,38 @@
+{
+  "pages":[
+    "pages/juben/juben",
+    "pages/juben2/juben2",
+    "pages/juben1/juben1",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle":"black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [{
+      "pagePath":  "pages/juben/juben",
+      "text": "剧本",
+      "iconPath": "image/城堡.png",
+      "selectedIconPath":"image/城堡.png"
+    },
+    {
+      "pagePath":  "pages/juben/juben",
+      "text": "挑战",
+      "iconPath": "image/城堡.png",
+      "selectedIconPath": "image/城堡.png"
+    },
+    {
+      "pagePath":  "pages/juben/juben",
+      "text": "日志",
+      "iconPath": "image/城堡.png",
+      "selectedIconPath": "image/城堡.png"
+    }
+  ]
+  }
+}
