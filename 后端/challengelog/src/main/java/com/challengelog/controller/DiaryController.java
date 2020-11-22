@@ -24,6 +24,7 @@ public class DiaryController {
     @Autowired
     DiaryMapper diaryMapper;
 
+    //查询用户所有日记
     public JSONObject queryDiaryById(@RequestBody JSONObject jsonParam){
         //根据user_id查询所有日记
         //定义变量及初始化
@@ -99,6 +100,7 @@ public class DiaryController {
         return jsonObject;
     }
 
+    //生成日记
     @RequestMapping("/generate")
     public JSONObject generateDiary(@RequestBody JSONObject jsonParam){
         //变量及初始化
