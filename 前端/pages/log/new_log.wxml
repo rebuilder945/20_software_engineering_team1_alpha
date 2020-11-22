@@ -3,7 +3,7 @@
 <view class="new_log">
   <form bindsubmit="create_newLog">
     <view class="title">
-      <text class="dscp">题目：</text><input type="text" class="add_title" name="title"></input>
+      <text class="dscp">标题：</text><input type="text" class="add_title" name="title"></input>
     </view>
     <view class="none1"></view>
     <view class="add_content">
@@ -11,7 +11,7 @@
     </view>
     <view class="none2"></view>
     <view class="button">
-      <navigator open-type="switchTab" url="index"><button class="submit" formType="submit" size="mini" bindtap="transmitNew">发布</button></navigator>
+      <navigator open-type="switchTab" url="index"><button class="submit" formType="submit" size="mini" bindtap="transmitNew">创建</button></navigator>
     </view>
   </form>
 </view>

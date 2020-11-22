@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/login/index",
     "pages/index/index",
     "pages/log/index",
     "pages/juben/juben",
@@ -7,6 +8,7 @@
     "pages/juben2/juben2",
     "pages/log/new_log",
     "pages/log/edit_log"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

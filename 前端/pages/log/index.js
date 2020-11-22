@@ -90,7 +90,7 @@ Page({
         main_line:result
       }
     })
-
+    console.log(1)
   },
 
   /**
