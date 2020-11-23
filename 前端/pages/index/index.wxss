@@ -153,7 +153,7 @@
 .timePicker{
   position: absolute;
   left:580rpx;
-  width: 160rpx;
+  width: 100rpx;
   height: 54rpx;
   border: 2rpx solid #E6E6EA;
   text-align:center;

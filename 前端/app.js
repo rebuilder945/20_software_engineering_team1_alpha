@@ -1,5 +1,8 @@
 //app.js
 App({
+  data:{
+    user_id:1
+  },
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -10,6 +13,24 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log(res);
+        wx.request({
+          url: 'api.iminx.cn',
+          dataType:"JSON",
+          data:{
+            code:res.code
+          },
+          method:"POST",
+          success:(res)=>{
+            this.setData({
+              user_id:res.user_id
+            });
+            console.log(user_id)
+          },
+          fail:(res)=>{
+            console.log("失败")
+          }
+        })
       }
     })
     // 获取用户信息
@@ -36,4 +57,5 @@ App({
   globalData: {
     userInfo: null
   }
+  
 })

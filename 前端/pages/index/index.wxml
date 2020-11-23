@@ -28,7 +28,7 @@
     <view class="{{addState}}">
       <view class="addTitle">
         <text class="addTitleText">一个小挑战:</text>
-        <input type="text"  bindinput='GetTargetValueTitle' class="addTitleInput" placeholder="请输入挑战目标"/>
+        <input type="text"  bindinput='GetTargetValueTitle' class="addTitleInput" placeholder="{{say1}}"/>
       </view>
       <view class="addTime">
         <view class="addTimeTitle">时间:</view>
@@ -45,7 +45,7 @@
       </view>
       <view class="addContent">
         <text class="addContentText">描述一下:</text>
-        <input type="text"  bindinput='GetTargetValueContent' class="addContentInput" placeholder="......"/>
+        <input type="text"  bindinput='GetTargetValueContent' class="addContentInput" placeholder="{{say2}}"/>
       </view>
       <button formType="submit" style="width:682rpx;border-radius: 34rpx 34rpx 34rpx 34rpx;" class="addButton" bindtap="CreateNewTarget">确定</button>
     </view>
@@ -55,10 +55,11 @@
       <view class="movie-content-wrapper">
         <text class="challengeTitle">{{item.title}}</text>
         <view>        
-          <text class="challengeTime">{{item.start_time}}</text>
+          <text class="challengeTime">{{item.begin_time}}</text>
         </view>
-        <view class="editArea">  <image class="{{editState}}" src="../../image/Image_Edit.jpg" ></image> 
-        <image class="{{completeState}}" src="../../image/Image_complete.png"></image>
+        <view class="editArea">  <image class="{{editState}}" src="../../image/Image_Edit.jpg" data-isEdit="{{editState}}" data-id="{{item.id}}" bindtap="deleteTarget"></image> 
+        <icon class="{{completeState}}" wx:if="{{item.status}}" type="success" bindtap="icon_change" data-Challenge="{{item}}" color="white" size="78rpx"></icon><icon class="{{completeState}}" wx:else type="cancel" bindtap="icon_change" size="78rpx" data-Challenge="{{item}}" color="white"></icon>
+        <!-- <image class="{{completeState}}" src="../../image/Image_complete.png"></image> -->
         </view>
       </view>
      </view>

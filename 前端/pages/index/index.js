@@ -4,47 +4,64 @@ Page({
    * 页面的初始数据
    */
   data: {
+    user_id:1,
+    urlf:"http://localhost:8080",
+    say1:"请输入挑战目标",
+    say2:"......",
     nowType: 0,
     searchState: "noneWxss",
     editState: "noneWxss",
     addState: "noneWxss",
     completeState: "journalEdit",
     Target: [{
+        id:0,
         title: "第一个目标",
         content: "第一个目标内容",
-        start_time: "2020年3月",
+        begin_time: "2020年3月",
         end_time: "2020年4月",
+        status:false,
       },
       {
+        id:1,
         title: "第二个目标",
         content: "第二个目标内容",
-        start_time: "2020年3月",
+        begin_time: "2020年3月",
         end_time: "2020年4月",
+        status:false,
       },
       {
+        id:2,
         title: "第三个目标",
         content: "第三个目标内容",
-        start_time: "2020年3月",
+        begin_time: "2020年3月",
         end_time: "2020年4月",
+        status:false,
       },
       {
+        id:3,
         title: "第四个目标",
         content: "第四个目标内容",
-        start_time: "2020年3月",
+        begin_time: "2020年3月",
         end_time: "2020年4月",
+        status:false,
       },
       {
+        id:4,
         title: "第五个目标",
         content: "第五个目标内容",
-        start_time: "2020年3月",
+        begin_time: "2020-5-173月",
         end_time: "2020年4月",
+        status:false,
       }
     ],
+    // Target:[],
     newTarget: {
-      title: "第五个目标",
-      content: "第五个目标内容",
-      start_time: "2020年3月",
-      end_time: "2020年4月",
+      "user_id":"1",
+	    "title":"第三个挑战",
+	    "content":"洗袜子",
+	    "begin_time":"20150101",
+	    "end_time":"20190909",
+	    "reminder":"true"
     },
     end_date:"2020-11-17",
     end_time:"00:00"
@@ -162,22 +179,33 @@ Page({
   },
   CreateNewTarget:function(e){
     this.setData({
-      'newTarget.start_time': util.formatTime(new Date()),
+      'newTarget.begin_time': util.formatTime(new Date()),
       'newTarget.end_time':[this.data.end_date]+" "+[this.data.end_time],
+      'addState':'noneWxss'
     })
-    console.log(this.data.newTarget.start_time);
+    console.log(this.data.newTarget.begin_time);
     console.log(this.data.newTarget.end_time);
     wx.request({
-      url: '/user/target/add ', 
+      url: 'http://localhost:8080/user/challenges/add', 
+      dataType:"JSON",
       data:{
         user_id:this.data.user_id,
-        Target:this.data.newTarget,
+        title:this.data.newTarget.title,
+        content:this.data.newTarget.content,
+        begin_time:this.data.newTarget.begin_time,
+        end_time:this.data.newTarget.end_time,
+        reminder:this.data.newTarget.reminder,
       },
-      method: "GET",
-      success(res) {
-        console.log(res.data)
+      method: "POST",
+      success: (res)=>{
+        // console.log(res.data);
+        // var push = JSON.parse(res.data);
+        // this.setData({
+          // 'Target.push': res.data,
+        // })
+        this.data.Target.unshift(this.data.newTarget);
         this.setData({
-          'Target.push':res.data,
+          Target:this.data.Target,
         })
       },
       fail(res) {
@@ -186,20 +214,24 @@ Page({
       complete: function () {
         console.log("ffff")
       }
-    })
+    });
+ /*   this.data.Target.push(this.data.newTarget);
+    this.setData({
+      Target:this.data.Target,
+    });*/
   },
   onLoad: function (options) {
     wx.request({
-      url: '/user/target/history',
-      data: this.user_id,
-      method: "GET",
-      success(res) {
-        console.log(res.data)
-        var target=this.data.Target;
-        target.splice(0,0,this.data.newTarget);
-        this.setData({
-         Target:target,
-        });
+      url: "http://localhost:8080/user/challenges",
+      dataType:"JSON",
+      data:{
+        "user_id":this.data.user_id,
+      },
+      method: "POST",
+      success: (res)=>{
+        var target = JSON.parse(res.data).reverse();
+        
+        this.setData({Target:target});
       },
       fail(res) {
         console.log("fail")
@@ -207,6 +239,81 @@ Page({
       complete: function () {
         console.log("ffff")
       }
+    });
+    // var targettemp= [{"reminder":false,"user_id":1,"end_time":1605813344000,"begin_time":1605813336000,"id":1,"title":"第一个挑战","content":"写亿行代码","status":false},{"reminder":false,"user_id":1,"end_time":0,"begin_time":0,"id":2,"title":"第一个挑战","content":"打亿行代码","status":false},{"reminder":false,"user_id":1,"end_time":0,"begin_time":0,"id":3,"title":"第一个挑战","content":"打亿行代码","status":false},{"reminder":true,"user_id":1,"end_time":20191000,"begin_time":20150000,"id":4,"title":"第三个挑战","content":"洗袜子","status":false},{"reminder":true,"user_id":1,"end_time":20191000,"begin_time":20150000,"id":5,"title":"第三个挑战","content":"洗袜子","status":false},{"reminder":true,"user_id":1,"end_time":20191000,"begin_time":20150000,"id":6,"title":"第三个挑战","content":"洗袜子","status":false},{"reminder":true,"user_id":1,"end_time":20191000,"begin_time":20150000,"id":7,"title":"第三个挑战","content":"洗袜子","status":false}];
+    // this.setData({
+    //  Target:target,
+    // });
+    console.log("new_one");
+  },
+  icon_change:function(e){
+    var content = e.currentTarget.dataset.challenge;
+    wx.showModal({
+      title: content.title,
+      content:content.content,
+      cancelText:"关闭",
+      confirmText:"完成挑战",
+      success: (res) => {
+        if (res.confirm) {
+          content.status = true;
+          var set = 'Target['+(content.id)+'].status';
+          console.log(this.data.Target[content.id])
+          this.setData({
+            [set]:content.status
+          }),
+          wx.request({
+            url: 'http://localhost:8080/user/challenges/complete',
+            dataType:"JSON",
+            data:{
+              user_id:this.data.user_id,
+              challenge_id:this.data.Target[content.id].id
+            },
+            method:"POST",
+            complete:(res)=>{
+              
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+        
+      }
     })
+    // var set = 'Target['+content.id+'].status';
+    // // console.log(set)
+    // this.setData({
+    //   'set':content.status
+    // })
+    // console.log(this.data.Target[content.id].status)
+  },
+  deleteTarget:function(e){
+    console.log(e);
+    var app = getApp();
+    if(e.currentTarget.dataset.isedit=="journalEdit"){
+      wx.showModal({
+        title:"提示",
+        content:"是否删除",
+        success:(res)=>{
+          console.log("删除日志")
+          wx.request({
+            url: 'http://localhost:8080/user/challenges/delete',
+            dataType:"JSON",
+            method:"POST",
+            data:{
+              user_id:app.data.user_id,
+              challenge_id:e.currentTarget.dataset.id
+            },
+            success:(res)=>{
+              console.log("删除成功");
+              this.onLoad();
+            },
+            complete:(res)=>{
+              console.log("555~")
+              this.onLoad();
+            }
+          })
+        }
+      })
+    }
   }
 })
