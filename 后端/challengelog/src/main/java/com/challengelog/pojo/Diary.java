@@ -19,4 +19,51 @@ public class Diary {
     int content_plot_id;
     String content_userdifine;
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public void setStory_id(int story_id) {
+        this.story_id = story_id;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+
+    public void setContent_plot_id(int content_plot_id) {
+        this.content_plot_id = content_plot_id;
+    }
+
+    public void setContent_userdifine(String content_userdifine) {
+        this.content_userdifine = content_userdifine;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public int getStory_id() {
+        return story_id;
+    }
+
+    public Timestamp getTime() {
+        return time;
+    }
+
+    public int getContent_plot_id() {
+        return content_plot_id;
+    }
+
+    public String getContent_userdifine() {
+        return content_userdifine;
+    }
 }

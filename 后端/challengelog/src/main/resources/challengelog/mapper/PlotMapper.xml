@@ -8,4 +8,9 @@
         from plot
         where id = #{id};
     </select>
+    <select id="queryNextPlot" resultType="Plot">
+        select *
+        from plot
+        where parent_id = #{id} and status = #{status};
+    </select>
 </mapper>

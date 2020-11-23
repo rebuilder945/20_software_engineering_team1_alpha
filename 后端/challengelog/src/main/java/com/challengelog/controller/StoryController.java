@@ -1,8 +1,11 @@
 package com.challengelog.controller;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.challengelog.mapper.StoryMapper;
+import com.challengelog.pojo.Story;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,24 +23,22 @@ public class StoryController {
 
     //查看剧本
     @RequestMapping("/user/story")
-    public JSONObject queryStoryByUserId(@RequestBody JSONObject jsonParam){
+    public JSONArray queryStoryByUserId(@RequestBody JSONObject jsonParam){
         //变量定义及初始化
         int user_id = jsonParam.getInteger("user_id");
         JSONObject jsonObject = null;
         List<JSONObject> storyList = new ArrayList();
 
-
         //查询
-
-
-
+        List<Story> stories = storyMapper.queryStoryByUserId(user_id);
+        JSONArray resultArray = JSONArray.parseArray(JSON.toJSONString(stories));
         //返回结果
         /*
         if(){
 
         }
         */
-        return jsonObject;
+        return resultArray;
     }
 
     //查看当前剧本
@@ -45,10 +46,11 @@ public class StoryController {
     public JSONObject queryStoryById(@RequestBody JSONObject jsonParam){
         //变量定义及初始化
         int story_id = jsonParam.getInteger("story_id");
-        JSONObject jsonObject = null;
-
-
         //查询
+
+
+
+
 
 
 
@@ -64,7 +66,7 @@ public class StoryController {
             jsonObject.put("msg","查看当前剧本失败");
         }
         */
-        return jsonObject;
+        return null;
     }
 
     //修改（设置）当前剧本

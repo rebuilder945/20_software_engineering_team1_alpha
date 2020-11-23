@@ -1,8 +1,8 @@
 package com.challengelog.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.challengelog.mapper.DiaryMapper;
-import com.challengelog.pojo.Diary;
+import com.challengelog.mapper.*;
+import com.challengelog.pojo.*;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.InputStream;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,17 @@ public class DiaryController {
     @Autowired
     DiaryMapper diaryMapper;
 
+    @Autowired
+    UserMapper userMapper;
+
+    @Autowired
+    StoryMapper storyMapper;
+
+    @Autowired
+    ChallengesMapper challengesMapper;
+
+    @Autowired
+    PlotMapper plotMapper;
     //查询用户所有日记
     public JSONObject queryDiaryById(@RequestBody JSONObject jsonParam){
         //根据user_id查询所有日记
@@ -106,22 +118,48 @@ public class DiaryController {
         //变量及初始化
         int user_id = jsonParam.getInteger("user_id");
         JSONObject jsonObject = null;
+        //查找用户信息
+        User user = userMapper.queryUserById(user_id);
 
+        int current_plot_id = user.getCurrent_plot_id();
+        //查找用户今日挑战
+        List<Challenges> challenges = challengesMapper.queryChallengesByDate(user_id,new Timestamp(System.currentTimeMillis()));
 
+        //判断今日挑战中是否有未完成的
+        int branch = 1;
+        for(Challenges i:challenges){
+            if(i.getStatus() == false){
+                branch = 0;
+                break;
+            }
+        }
+
+        //找到对应情节
+        Plot plot = plotMapper.queryNextPlot(current_plot_id,branch);
+
+        //创建新日记
+        Diary diary = null;
+        diary.setUser_id(user_id);
+        diary.setStory_id(user.getCurrent_story_id());
+        diary.setContent_plot_id(user.getCurrent_plot_id());
+        diary.setTime(new Timestamp(System.currentTimeMillis()));
+        diary.setContent_userdifine("剧情："+plot.getContent());
+
+        diary.setId(diaryMapper.insertDiary(diary));
         //返回结果
-        /*
-        if(){
-            jsonObject.put("diary_id",);
-            jsonObject.put("title",);
-            jsonObject.put("time",);
-            jsonObject.put("content",);
+
+        if(true){
+            jsonObject.put("diary_id",diary.getId());
+            jsonObject.put("title","日记"+diary.getId());
+            jsonObject.put("time",diary.getTime());
+            jsonObject.put("content",diary.getContent_userdifine());
         }
         else{
             jsonObject.put("status",false);
             jsonObject.put("msg","生成失败");
         }
-        */
-        return jsonObject;
+
+        return null;
     }
 
 }

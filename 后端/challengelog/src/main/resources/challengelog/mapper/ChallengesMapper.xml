@@ -8,6 +8,10 @@
         from challenges
         where id = #{id};
     </select>
+    <select id="queryChallengesByDate" resultType="Challenges">
+        select * from challenges
+        where user_id = #{user_id} and end_time = #{today_date}
+    </select>
     <insert id="insertChallenges" parameterType="Challenges">
         insert into challenges(user_id, title, content, begin_time, end_time, status, reminder)
         values (#{user_id}, #{title}, #{content}, #{begin_time}, #{end_time}, #{status}, #{reminder});

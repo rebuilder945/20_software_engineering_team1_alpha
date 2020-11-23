@@ -6,10 +6,10 @@
     <select id="queryDiaryById" parameterType="int" resultType="Diary">
         select *
         from diary
-        where id = #{id};
+        where user_id = #{id};
     </select>
-    <insert id="insertDiary" parameterType="Diary">
-        insert into diary(user_id, story_id, time, content_plot_id, content_userdefine)
+    <insert id="insertDiary" parameterType="Diary" useGeneratedKeys="true" keyProperty="id">
+        insert into diary(id,user_id, story_id, time, content_plot_id, content_userdefine)
         values (#{user_id}, #{story_id}, #{time}, #{content_plot_id}, #{content_userdefine});
     </insert>
     <update id="updateDiary" parameterType="Diary">
