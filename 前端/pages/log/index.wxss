@@ -1,0 +1,60 @@
+/* pages/log/index.wxss */
+
+page{
+  background-color:#F0F0F0;
+}
+.bkgd{
+  padding-bottom: 35rpx;
+}
+
+
+
+
+
+.log{
+  padding-top: 10rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  
+}
+.content{
+  background-color: white;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  height: 100rpx;
+  border-radius: 36rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.none{
+  height:50rpx;
+}
+.date{
+  font-weight: lighter;
+  font-size: medium;
+}
+.story{
+
+  font-size: 40rpx;
+  width: 256rpx;
+  height:auto;
+  border-radius: 25rpx;
+  background-color: #258AFE;
+  color:white;
+  text-align: center;
+  line-height: 250%;
+  position: relative;
+  margin-right: 0%;
+}
+.beUrl{
+
+  width: 256rpx;
+  font-size: 40rpx;
+  background-color: #258AFE;
+  border-radius: 25rpx;
+  line-height: 250%;
+  color:white;
+  text-align: center;
+}

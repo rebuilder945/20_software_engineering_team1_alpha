@@ -1,0 +1,30 @@
+<!-- 主要剧情的入口 -->
+<view class="bkgd">
+  <navigator url="" open-type="switchTab">
+    <image src="{{main_line.cover_url}}" style="height:356rpx;width:100%;"></image>
+  </navigator>
+</view>
+
+<!-- 添加自定义日志 -->
+<view class="user_defined">
+  <view class="log">
+    <view class="content">
+      <text class="date">今天</text>
+      <navigator class="beUrl" url="new_log">新建</navigator>
+    </view>
+  </view>
+</view>
+<view class="none"></view>
+
+<!-- 添加 -->
+
+<!-- 显示日志具体信息 -->
+<view class="log">
+  <view class="log_item" wx:for="{{logList}}" wx:key="diary_id">
+    <view class="content" bindlongpress="edit_log" data-item="{{item}}">
+      <text class="date">{{item.time}}</text>
+      <text class="story" bindtap="btnTap1" data-content="{{item.content}}">{{item.title}}</text>
+    </view>
+    <view class="none"></view>
+  </view>
+</view>

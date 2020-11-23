@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/index/index",
+    "pages/log/index",
+    "pages/juben/juben",
+    "pages/juben1/juben1",
+    "pages/juben2/juben2",
+    "pages/log/new_log",
+    "pages/log/edit_log"
+    
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "我的挑战日志",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/log/index",
+        "text": "日志",
+        "iconPath": "icons/logs.png",
+        "selectedIconPath": "icons/logs_select.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "挑战",
+        "iconPath": "icons/index0.png",
+        "selectedIconPath": "icons/index0_select.png"
+      },
+      {
+        "pagePath": "pages/juben/juben",
+        "text": "剧本",
+        "iconPath": "icons/line.png",
+        "selectedIconPath": "icons/line_select.png"
+      }
+    ],
+    "color": "#ADD8E6",
+    "selectedColor": "#FF00FF"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

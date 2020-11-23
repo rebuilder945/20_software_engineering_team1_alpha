@@ -1,0 +1,11 @@
+<view class="select">
+  <navigator class="navi" url="search">
+    <image src="../../icons/search.png" style="width:81rpx;height:81rpx;"></image>
+  </navigator>
+  <navigator class="navi" url="add">
+    <image style="width:81rpx;height:81rpx" src="../../icons/add.png"></image>
+  </navigator>
+  <navigator class="navi" url="edit">
+    <image style="width:81rpx;height:81rpx" src="../../icons/edit.png"></image>
+  </navigator>
+</view>
