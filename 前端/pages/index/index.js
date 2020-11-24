@@ -17,8 +17,8 @@ Page({
         id:0,
         title: "第一个目标",
         content: "第一个目标内容",
-        begin_time: "2020年3月",
-        end_time: "2020年4月",
+        begin_time: "2020年3月ffff",
+        end_time: "2020年4fffffff",
         status:false,
       },
       {
@@ -49,7 +49,7 @@ Page({
         id:4,
         title: "第五个目标",
         content: "第五个目标内容",
-        begin_time: "2020-5-173月",
+        begin_time: "2020-5-173fqwqwf月",
         end_time: "2020年4月",
         status:false,
       }
@@ -286,34 +286,49 @@ Page({
     // })
     // console.log(this.data.Target[content.id].status)
   },
-  deleteTarget:function(e){
-    console.log(e);
-    var app = getApp();
-    if(e.currentTarget.dataset.isedit=="journalEdit"){
-      wx.showModal({
-        title:"提示",
-        content:"是否删除",
-        success:(res)=>{
-          console.log("删除日志")
-          wx.request({
-            url: 'http://localhost:8080/user/challenges/delete',
-            dataType:"JSON",
-            method:"POST",
-            data:{
-              user_id:app.data.user_id,
-              challenge_id:e.currentTarget.dataset.id
-            },
-            success:(res)=>{
-              console.log("删除成功");
-              this.onLoad();
-            },
-            complete:(res)=>{
-              console.log("555~")
-              this.onLoad();
-            }
-          })
-        }
-      })
-    }
+  editTarget:function(e){
+    console.log(e.currentTarget.dataset.id);
+    var index=e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../log/edit_log?'+ '&title=' + this.data.Target[index].title + '&time=' + this.data.Target[index].end_time + '&content=' + this.data.Target[index].content 
+    })
+    //console.log(e);
+    // var app = getApp();
+    // if(e.currentTarget.dataset.isedit=="journalEdit"){
+    //   wx.showModal({
+    //     title:"提示",
+    //     content:"是否删除",
+    //     success:(res)=>{
+    //       console.log("删除日志")
+    //       wx.request({
+    //         url: 'http://localhost:8080/user/challenges/delete',
+    //         dataType:"JSON",
+    //         method:"POST",
+    //         data:{
+    //           user_id:app.data.user_id,
+    //           challenge_id:e.currentTarget.dataset.id
+    //         },
+    //         success:(res)=>{
+    //           console.log("删除成功");
+    //           this.onLoad();
+    //         },
+    //         complete:(res)=>{
+    //           console.log("555~")
+    //           this.onLoad();
+    //         }
+    //       })
+    //     }
+    //   })
+    // }
+  },
+
+
+  handleDeleteProduct:function(e)
+  {
+    this.data.Target.splice(e.currentTarget.dataset.id,1);
+    console.log(this.data.Target);
+    this.setData({
+      Target:this.data.Target,
+    })
   }
 })
