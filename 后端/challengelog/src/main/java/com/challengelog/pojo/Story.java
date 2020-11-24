@@ -16,4 +16,6 @@ public class Story {
     String cover_url;
     int plot_begin_node_id;
 
+
+
 }

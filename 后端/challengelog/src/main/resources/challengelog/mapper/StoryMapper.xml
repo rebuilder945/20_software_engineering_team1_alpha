@@ -3,6 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.challengelog.mapper.StoryMapper">
+    <select id="queryStoryByUserId" parameterType="int" resultType="Story">
+        select story_id,story_name,cover_url
+        from story
+        where user_id = #{id};
+    </select>
     <select id="queryStoryById" parameterType="int" resultType="Story">
         select *
         from story
