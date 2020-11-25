@@ -2,7 +2,31 @@
 Page({
   data: {
     comfirm1:0,
-    comfirm2:0
+    comfirm2:0,
+      lists:[
+        {
+          imgurl:'https://img2020.cnblogs.com/blog/2146164/202011/2146164-20201120220248798-2054370804.png',
+          storyname:'埃斯顿城堡',
+          storyid:1
+        },
+        {
+          imgurl:'https://img2020.cnblogs.com/blog/2146164/202011/2146164-20201120220345598-1996317016.png',
+          storyname:'林中秘事',
+          storyid:2
+        },
+        {
+          imgurl:'https://img2020.cnblogs.com/blog/2146164/202011/2146164-20201120220738394-1087578705.jpg',
+          storyname:'第三个故事',
+          storyid:3
+        },
+        {
+          imgurl: 'https://img2020.cnblogs.com/blog/2146164/202011/2146164-20201120220802565-1243761749.jpg',
+          storyname:'第四个故事',
+          storyid:4
+        }
+    ]
+    
+    
   },
   comfirm1:function(e){
       var com1=this.data.comfirm1
@@ -29,8 +53,8 @@ Page({
             comfirm2:com2
           })
           wx.request({
-            url: 'https://localhost:8443/xiaochengxu/addBill.do',
-            data:self.data.comfirm1,
+            url: 'https://api.iminx.cn/user/story/current/change',
+            data:e.detail.mainid,
             method:"post",
             header: {'content-type': 'application/x-www-form-urlencoded'},
             success:function(res) {
@@ -74,7 +98,7 @@ Page({
             comfirm2:com2
           })
           wx.request({
-            url: 'https://localhost:8443/xiaochengxu/addBill.do',
+            url: 'https://api.iminx.cn/user/story/current/change',
             data:self.data.comfirm1,
             method:"post",
             header: {'content-type': 'application/x-www-form-urlencoded'},
@@ -92,6 +116,24 @@ Page({
         }
      }
     })
-
+  },
+  onLoad:function(options){
+    var self="this"
+    wx.request({
+      url: 'https://api.iminx.cn/user/story',
+      method:'POST',
+      header: {
+        'content-type': 'json' // 默认值
+      },
+      data:{
+        "user_id":"1",
+      },
+      success:function(res){
+        console.log(res.data),
+        this.setData({
+        list:res.data,
+        })
+      }
+    })
   }
 })

@@ -82,6 +82,14 @@
           "scene": null
         },
         {
+          "name": "pages/login/index",
+          "pathName": "pages/login/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/juben/juben",
+          "pathName": "pages/juben/juben",
           "id": -1,
           "name": "pages/log/index",
           "pathName": "pages/log/index",

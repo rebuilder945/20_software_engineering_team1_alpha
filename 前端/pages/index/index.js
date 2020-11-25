@@ -5,7 +5,7 @@ Page({
    */
   data: {
     user_id:1,
-    urlf:"http://localhost:8080",
+  
     say1:"请输入挑战目标",
     say2:"......",
     nowType: 0,
@@ -186,7 +186,7 @@ Page({
     console.log(this.data.newTarget.begin_time);
     console.log(this.data.newTarget.end_time);
     wx.request({
-      url: 'http://localhost:8080/user/challenges/add', 
+      url: 'http://api.iminx.cn/user/challenges/add', 
       dataType:"JSON",
       data:{
         user_id:this.data.user_id,
@@ -222,7 +222,7 @@ Page({
   },
   onLoad: function (options) {
     wx.request({
-      url: "http://localhost:8080/user/challenges",
+      url: "http://api.iminx.cn/user/challenges",
       dataType:"JSON",
       data:{
         "user_id":this.data.user_id,
@@ -262,7 +262,7 @@ Page({
             [set]:content.status
           }),
           wx.request({
-            url: 'http://localhost:8080/user/challenges/complete',
+            url: 'http://api.iminx.cn/challenges/complete',
             dataType:"JSON",
             data:{
               user_id:this.data.user_id,
@@ -272,7 +272,8 @@ Page({
             complete:(res)=>{
               
             }
-          })
+          }),
+          this.onLoad();
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
