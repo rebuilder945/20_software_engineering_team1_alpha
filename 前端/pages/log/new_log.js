@@ -79,14 +79,14 @@ Page({
     newLog[key0] = value0;
     newLog[key1] = value1;
     newLog[key2] = value2;
-    newLog[key3] = value3;
+    // newLog[key3] = value3;
     this.setData({
       new_log:newLog
     })
   },
   transmitNew:function(){
     wx.request({
-      url: 'api.iminx.cn',
+      url: 'https://api.iminx.cn/user/diary/add',
       data:this.data.new_log,
       datatype:"JSON",
       method:"POST",

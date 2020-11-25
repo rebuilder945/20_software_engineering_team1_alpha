@@ -90,7 +90,7 @@ Page({
   },
   confirm_edit:function(){
     wx.request({
-      url: 'api.iminx.cn',
+      url: 'https://api.iminx.cn/user/diary/modify',
       data:this.data.edit_log,
       datatype:"JSON",
       method:"POST",

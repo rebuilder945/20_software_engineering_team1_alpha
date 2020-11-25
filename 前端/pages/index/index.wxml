@@ -51,17 +51,27 @@
     </view>
    <!-- 挑战-->
     <view class="journalss" >
-      <view  wx:for="{{Target}}" wx:key="*this">
-      <view class="movie-content-wrapper">
-        <text class="challengeTitle">{{item.title}}</text>
-        <view>        
-          <text class="challengeTime">{{item.begin_time}}</text>
-        </view>
-        <view class="editArea">  <image class="{{editState}}" src="../../image/Image_Edit.jpg" data-isEdit="{{editState}}" data-id="{{item.id}}" bindtap="deleteTarget"></image> 
-        <icon class="{{completeState}}" wx:if="{{item.status}}" type="success" bindtap="icon_change" data-Challenge="{{item}}" color="white" size="78rpx"></icon><icon class="{{completeState}}" wx:else type="cancel" bindtap="icon_change" size="78rpx" data-Challenge="{{item}}" color="white"></icon>
-        <!-- <image class="{{completeState}}" src="../../image/Image_complete.png"></image> -->
-        </view>
+      <view  wx:for-index="index" wx:for="{{Target}}" wx:key="*this" class="testfor">
+        <movable-area class="movA">
+          <movable-view 
+          direction="horizontal" x="{{item.xmove}}"
+          out-of-bounds="true" class="movV" inertia="true">
+            <view class="movie-content-wrapper">
+              <text class="challengeTitle">{{item.title}}</text>
+              <view>        
+                <text class="challengeTime">{{item.begin_time}}</text>
+              </view>
+              <view class="editArea">  
+                <image class="{{editState}}" src="../../image/Image_Edit.jpg" data-id="{{index}}" bindtap="editTarget" data-id="{{index}}"></image> 
+                <icon class="{{completeState}}" wx:if="{{item.status}}" type="success" bindtap="icon_change" data-Challenge="{{item}}" color="white" size="78rpx"></icon>
+                <icon class="{{completeState}}" wx:else type="circle" bindtap="icon_change" size="78rpx" data-Challenge="{{item}}" color="white"></icon>
+              <!-- <image class="{{completeState}}" src="../../image/Image_complete.png"></image> -->
+              </view>
+            </view>
+          </movable-view>
+        </movable-area>
+        <view class="delete-btn" data-id="{{index}}" bindtap="handleDeleteProduct">删除</view>
+        <view class="none"></view>
       </view>
-     </view>
     </view>
 </view>

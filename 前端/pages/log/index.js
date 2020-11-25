@@ -15,32 +15,33 @@ Page({
       "story_id":1,
       "cover_url":"../../image/story.png"
     }),
-    logList:([
-      {
-        "diary_id":"4",
-        "title":"日记4",
-        "time":"2020-4-4",
-        "content":"日记内容"
-      },
-      {
-        "diary_id":"3",
-        "title":"日记3",
-        "time":"2020-3-3",
-        "content":"日记内容"
-      },
-      {
-        "diary_id":"2",
-        "title":"日记2",
-        "time":"2020-2-2",
-        "content":"日记内容"
-      },
-      {
-        "diary_id":"1",
-        "title":"日记1",
-        "time":"2020-1-1",
-        "content":"日记内容"
-      }
-    ])
+    logList:{},
+    // logList:(
+    //   {
+    //     "diary_id":"4",
+    //     "title":"日记4",
+    //     "time":"2020-4-4",
+    //     "content":"日记内容"
+    //   },
+    //   {
+    //     "diary_id":"3",
+    //     "title":"日记3",
+    //     "time":"2020-3-3",
+    //     "content":"日记内容"
+    //   },
+    //   {
+    //     "diary_id":"2",
+    //     "title":"日记2",
+    //     "time":"2020-2-2",
+    //     "content":"日记内容"
+    //   },
+    //   {
+    //     "diary_id":"1",
+    //     "title":"日记1",
+    //     "time":"2020-1-1",
+    //     "content":"日记内容"
+    //   }
+    // )
   },
   /*点击事件*/
   btnTap1:function(event){
@@ -63,16 +64,17 @@ Page({
    */
   onLoad: function (options) {
     wx.request({
-      url: 'api.imix.cn/',
+      url: 'https://api.iminx.cn/user/diary',
       dataType: "JSON",
       data:{
         "user_id":1
       },
       method:"POST",
       success: (result) => {
-        this.setData({
-          logList:result,
-        });
+        // this.setData({
+        //   logList:result
+        // });
+        console.log(result)
       },
       fail: (res) => {
         console.log("无法获得数据")
@@ -80,7 +82,7 @@ Page({
       complete: (res) => {},
     })
     wx.request({
-      url: 'api.iminx.cn',
+      url: 'https://api.iminx.cn/user/story/current',
       data:{
         "user_id":1
       },

@@ -1,8 +1,14 @@
+/* page{
+  background-color: #F0F0F0;
+} */
 .buttonArea{
   display: flex;
   justify-content:space-around;
 }
+.none{
 
+  height: 25rpx;
+}
 .all{
   overflow:hidden;
 }
@@ -12,9 +18,6 @@
 .movie-content-wrapper{
   background-color:#68ADEF;
   padding-top: 100rpx;
-  border-radius :32rpx;
-  margin: 20rpx;
-  height: 80rpx;
 }
 .challengeTitle{
   position: relative;
@@ -203,5 +206,37 @@ button {
   position: relative;
   top:-40rpx;
 }
+.movA{
+  width: 632rpx;
+  height: 170rpx;
+  z-index:999;
+}
+.movV{
+  width: 770rpx;
+  height: 170rpx;
+}
+.testfor{
+  position: relative;
+  overflow:hidden;
+  width: 100vw;
+  border-bottom: 3rpx solid white;
+  box-sizing: border-box;
+  background: #ffffff;
+  z-index: 999;
 
-
+}
+.delete-btn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0; 
+  width: 150rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  line-height: 120rpx;
+  z-index: 1;
+  background: #E66671;
+  text-align: center;
+  height: 170rpx;
+}
