@@ -17,7 +17,7 @@ public class Diary {
     int story_id;
     Timestamp time;
     int content_plot_id;
-    String content_userdifine;
+    String content_userdefine;
 
     public void setId(int id) {
         this.id = id;
@@ -39,8 +39,8 @@ public class Diary {
         this.content_plot_id = content_plot_id;
     }
 
-    public void setContent_userdifine(String content_userdifine) {
-        this.content_userdifine = content_userdifine;
+    public void setContent_userdefine(String content_userdifine) {
+        this.content_userdefine = content_userdifine;
     }
 
     public int getId() {
@@ -63,7 +63,7 @@ public class Diary {
         return content_plot_id;
     }
 
-    public String getContent_userdifine() {
-        return content_userdifine;
+    public String getContent_userdefine() {
+        return content_userdefine;
     }
 }
