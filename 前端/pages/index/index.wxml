@@ -71,7 +71,6 @@
           </movable-view>
         </movable-area>
         <view class="delete-btn" data-id="{{index}}" bindtap="handleDeleteProduct">删除</view>
-        <view class="none"></view>
       </view>
     </view>
 </view>

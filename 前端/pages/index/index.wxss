@@ -223,6 +223,27 @@ button {
   box-sizing: border-box;
   background: #ffffff;
   z-index: 999;
+  border-bottom: 3rpx solid black;
+  box-sizing: border-box;
+  background: #ffffff;
+  z-index: 999;
+
+}
+.delete-btn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0; 
+  width: 150rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  line-height: 120rpx;
+  z-index: 1;
+  background: #E66671;
+  text-align: center;
+  height: 170rpx;
+}
 
 }
 .delete-btn {

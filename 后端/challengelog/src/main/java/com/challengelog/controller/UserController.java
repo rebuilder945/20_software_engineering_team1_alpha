@@ -115,7 +115,23 @@ public class UserController {
     }
 
     @RequestMapping("/target/delete")
-    public String targetdelete() {
+    public String targetdelete(@RequestBody JSONObject jsonParam) {
+        String user_id = jsonParam.get("user_id").toString();
+        String challenge_id = jsonParam.getJSONObject("challenge_id").toString();
+        JSONObject jsonObject = new JSONObject();
+
+        if(true){
+            String sql = "delete from challenges where id = '" + challenge_id + "';";
+            System.out.println(sql);
+            jdbcTemplate.execute(sql);
+            jsonObject.put("msg", "新增目标成功");
+            jsonObject.put("status",true);
+
+        }
+        else{
+
+        }
+
         return "targetdelete";
     }
 

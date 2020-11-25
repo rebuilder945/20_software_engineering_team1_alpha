@@ -28,17 +28,17 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "enableEngineNative": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
+    "enableEngineNative": false,
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.14.0",
-  "appid": "wxab9b037d01003967",
+  "appid": "wx518beaa0924cb723",
   "projectname": "%E6%88%91%E7%9A%84%E6%8C%91%E6%88%98%E6%97%A5%E5%BF%97_period1",
   "debugOptions": {
     "hidedInDevtools": []
@@ -48,6 +48,14 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
     "plugin": {
       "list": []
     },
@@ -60,25 +68,15 @@
     "miniprogram": {
       "list": [
         {
+          "id": -1,
           "name": "pages/index/index",
           "pathName": "pages/index/index",
           "query": "",
           "scene": null
         },
         {
-          "name": "日志",
-          "pathName": "pages/log/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "new_log",
-          "pathName": "pages/log/new_log",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "edit_log",
+          "id": 1,
+          "name": "pages/log/edit_log",
           "pathName": "pages/log/edit_log",
           "query": "",
           "scene": null
@@ -92,6 +90,10 @@
         {
           "name": "pages/juben/juben",
           "pathName": "pages/juben/juben",
+          "id": -1,
+          "name": "pages/log/index",
+          "pathName": "pages/log/index",
+          "query": "",
           "scene": null
         }
       ]
