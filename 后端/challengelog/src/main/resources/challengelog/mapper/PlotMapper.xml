@@ -11,6 +11,6 @@
     <select id="queryNextPlot" resultType="Plot">
         select *
         from plot
-        where parent_id = #{id} and status = #{status};
+        where parent_id = #{parent_id} and branch = #{branch};
     </select>
 </mapper>

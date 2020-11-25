@@ -10,7 +10,7 @@
     </select>
     <insert id="insertDiary" parameterType="Diary" useGeneratedKeys="true" keyProperty="id">
         insert into diary(id,user_id, story_id, time, content_plot_id, content_userdefine)
-        values (#{user_id}, #{story_id}, #{time}, #{content_plot_id}, #{content_userdefine});
+        values (#{id},#{user_id}, #{story_id}, #{time}, #{content_plot_id}, #{content_userdefine});
     </insert>
     <update id="updateDiary" parameterType="Diary">
         update diary

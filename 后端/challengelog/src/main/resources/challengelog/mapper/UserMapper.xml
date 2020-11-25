@@ -22,6 +22,11 @@
         update user
         set current_story_id = #{current_story_id};
     </update>
+    <update id="updateUserPlot">
+        update user
+        set current_plot_id = #{current_plot_id}
+        where id = #{id};
+    </update>
     <delete id="deleteUserById">
         delete from user where id = #{id};
     </delete>

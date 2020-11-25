@@ -10,6 +10,6 @@ public interface PlotMapper {
 
     Plot queryPlotById(int id);
 
-    Plot queryNextPlot(int id,int status);
+    Plot queryNextPlot(int parent_id,int branch);
 
 }

@@ -117,7 +117,7 @@ public class DiaryController {
     public JSONObject generateDiary(@RequestBody JSONObject jsonParam){
         //变量及初始化
         int user_id = jsonParam.getInteger("user_id");
-        JSONObject jsonObject = null;
+        JSONObject jsonObject = new JSONObject();
         //查找用户信息
         User user = userMapper.queryUserById(user_id);
 
@@ -133,33 +133,37 @@ public class DiaryController {
                 break;
             }
         }
-
         //找到对应情节
         Plot plot = plotMapper.queryNextPlot(current_plot_id,branch);
 
+        //将找到的情节号设置为用户当前情节号
+        int tmp = userMapper.updateUserPlot(user_id,plot.getId());
+
         //创建新日记
-        Diary diary = null;
+        Diary diary = new Diary();
         diary.setUser_id(user_id);
         diary.setStory_id(user.getCurrent_story_id());
-        diary.setContent_plot_id(user.getCurrent_plot_id());
+        diary.setContent_plot_id(plot.getId());
         diary.setTime(new Timestamp(System.currentTimeMillis()));
-        diary.setContent_userdifine("剧情："+plot.getContent());
+        diary.setContent_userdefine("剧情："+plot.getContent());
+
+        //System.out.println(diary);
 
         diary.setId(diaryMapper.insertDiary(diary));
         //返回结果
-
+        //System.out.println("*****");
         if(true){
             jsonObject.put("diary_id",diary.getId());
             jsonObject.put("title","日记"+diary.getId());
             jsonObject.put("time",diary.getTime());
-            jsonObject.put("content",diary.getContent_userdifine());
+            jsonObject.put("content",diary.getContent_userdefine());
         }
         else{
             jsonObject.put("status",false);
             jsonObject.put("msg","生成失败");
         }
 
-        return null;
+        return jsonObject;
     }
 
 }
