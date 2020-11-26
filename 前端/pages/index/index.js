@@ -246,34 +246,75 @@ Page({
     // });
     console.log("new_one");
   },
-  icon_change:function(e){
-    var content = e.currentTarget.dataset.challenge;
+  icon_change1:function(e){
+    var num = e.currentTarget.dataset.index;
+    console.log(this.data.Target[num]);
     wx.showModal({
-      title: content.title,
-      content:content.content,
+      title: this.data.Target[num].title,
+      content:this.data.Target[num].content,
       cancelText:"关闭",
-      confirmText:"完成挑战",
+      confirmText:"取消完成",
       success: (res) => {
         if (res.confirm) {
-          content.status = true;
-          var set = 'Target['+(content.id)+'].status';
-          console.log(this.data.Target[content.id])
+          // content.status = true;
+          var set = 'Target['+num+'].status';
+          // console.log(this.data.Target[content.id])
           this.setData({
-            [set]:content.status
+            [set]:false
           }),
           wx.request({
-            url: 'http://api.iminx.cn/challenges/complete',
+            url: 'https://api.iminx.cn/user/challenges/uncomplete',
             dataType:"JSON",
             data:{
               user_id:this.data.user_id,
-              challenge_id:this.data.Target[content.id].id
+              challenge_id:this.data.Target[num].id
             },
             method:"POST",
             complete:(res)=>{
               
             }
+          });
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+        
+      }
+    })
+    // var set = 'Target['+content.id+'].status';
+    // // console.log(set)
+    // this.setData({
+    //   'set':content.status
+    // })
+    // console.log(this.data.Target[content.id].status)
+  },
+  icon_change2:function(e){
+    var num = e.currentTarget.dataset.index;
+    console.log(this.data.Target[num]);
+    wx.showModal({
+      title: this.data.Target[num].title,
+      content:this.data.Target[num].content,
+      cancelText:"关闭",
+      confirmText:"完成挑战",
+      success: (res) => {
+        if (res.confirm) {
+          // content.status = true;
+          var set = 'Target['+num+'].status';
+          // console.log(this.data.Target[content.id])
+          this.setData({
+            [set]:true
           }),
-          this.onLoad();
+          wx.request({
+            url: 'https://api.iminx.cn/user/challenges/complete',
+            dataType:"JSON",
+            data:{
+              user_id:this.data.user_id,
+              challenge_id:this.data.Target[num].id
+            },
+            method:"POST",
+            complete:(res)=>{
+              
+            }
+          });
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
