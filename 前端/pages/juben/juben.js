@@ -123,13 +123,13 @@ Page({
       url: 'https://api.iminx.cn/user/story',
       method:'POST',
       header: {
-        'content-type': 'json' // 默认值
+        'content-type': 'json' 
       },
       data:{
-        "user_id":"1",
+        "user_id":1,
       },
-      success:function(res){
-        console.log(res.data),
+      success:(res)=>{
+        console.log(res),
         this.setData({
         list:res.data,
         })

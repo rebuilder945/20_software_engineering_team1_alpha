@@ -1,12 +1,12 @@
 <swiper class="swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{5000}}" duration="{{1000}}" >
-  <block wx:for="{{lists}}">
+  <block wx:for="{{lists}}" wx:key="storyid">
     <swiper-item>
       <image src="{{item.imgurl}}" class="slide-image" width="749rpx" height="528rpx"/>
     </swiper-item>
   </block>
 </swiper>
 <view class="null" />
-<view class='list' wx:for="{{lists}}">
+<view class='list' wx:for="{{lists}}" wx:key="storyid">
   <view class='lchild' bindtap="comfirm1" mainid="{{item.storyid}}">
     <image src="https://img2020.cnblogs.com/blog/2146164/202011/2146164-20201123205305519-1354017804.png" class="icon-url"/>
     <text class="story-name">{{item.storyname}}</text>

@@ -89,7 +89,10 @@ Page({
       dataType:"JSON",
       method:"POST",
       success:(result)=>{
-        main_line:result
+        // this.setData({
+        //   main_line:result
+        // })
+        console.log(result)
       }
     })
     console.log(1)
