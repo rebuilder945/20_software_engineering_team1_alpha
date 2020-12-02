@@ -6,15 +6,26 @@
     <select id="queryDiaryById" parameterType="int" resultType="Diary">
         select *
         from diary
-        where user_id = #{id};
+        where id = #{id};
+    </select>
+    <select id="queryDiaryByUserId" parameterType="int" resultType="Diary">
+        select *
+        from diary
+        where user_id = #{user_id};
     </select>
     <insert id="insertDiary" parameterType="Diary" useGeneratedKeys="true" keyProperty="id">
-        insert into diary(id,user_id, story_id, time, content_plot_id, content_userdefine)
-        values (#{id},#{user_id}, #{story_id}, #{time}, #{content_plot_id}, #{content_userdefine});
+        insert into diary(user_id, story_id, time, title, content_plot_id, content_userdefine)
+        values (#{user_id}, #{story_id}, #{time}, #{title}, #{content_plot_id}, #{content_userdefine});
+    </insert>
+    <insert id="insertDiary1" parameterType="Diary" useGeneratedKeys="true" keyProperty="id">
+        insert into diary(user_id, time, content_userdefine)
+        values (#{user_id}, #{time}, #{content_userdefine});
     </insert>
     <update id="updateDiary" parameterType="Diary">
         update diary
-        set content_userdefine = #{content_userdefine};
+        set title              = #{title},
+            content_userdefine = #{content_userdefine}
+        where id = #{id};
     </update>
     <delete id="deleteDiaryById">
         delete from diary where id = #{id};

@@ -1,15 +1,18 @@
 package com.challengelog.mapper;
 
+
 import com.challengelog.pojo.Story;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+
 @Mapper
 @Repository
-public interface StoryMapper {
+public interface UserstoryMapper {
 
-    Story queryStoryById(int id);
+    ArrayList<Integer> queryStoryIdByUserId(int user_id);
 
-    int queryBeginPlotIdByStoryId(int story_id);
+    int insertUserStory(int user_id, int story_id);
 
 }

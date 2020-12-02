@@ -16,43 +16,35 @@ public class Diary {
     int user_id;
     int story_id;
     Timestamp time;
+    String title;
     int content_plot_id;
     String content_userdefine;
 
-    public void setId(int id) {
+    public Diary(int id, int user_id, String title, String content_userdefine) {
         this.id = id;
-    }
-
-    public void setUser_id(int user_id) {
         this.user_id = user_id;
+        this.title = title;
+        this.content_userdefine = content_userdefine;
     }
 
-    public void setStory_id(int story_id) {
+    public Diary(int user_id, String title, String content_userdefine) {
+        this.user_id = user_id;
+        this.title = title;
+        this.content_userdefine = content_userdefine;
+        this.time = new Timestamp(System.currentTimeMillis());
+    }
+
+    public Diary(int user_id, int story_id, String title, int content_plot_id) {
+        this.user_id = user_id;
         this.story_id = story_id;
-    }
-
-    public void setTime(Timestamp time) {
-        this.time = time;
-    }
-
-    public void setContent_plot_id(int content_plot_id) {
+        this.title = title;
+        this.content_userdefine = null;
         this.content_plot_id = content_plot_id;
-    }
-
-    public void setContent_userdefine(String content_userdifine) {
-        this.content_userdefine = content_userdifine;
+        this.time = new Timestamp(System.currentTimeMillis());
     }
 
     public int getId() {
         return id;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public int getStory_id() {
-        return story_id;
     }
 
     public Timestamp getTime() {
@@ -61,6 +53,10 @@ public class Diary {
 
     public int getContent_plot_id() {
         return content_plot_id;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public String getContent_userdefine() {

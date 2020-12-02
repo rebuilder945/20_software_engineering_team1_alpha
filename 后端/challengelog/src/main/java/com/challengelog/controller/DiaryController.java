@@ -1,27 +1,28 @@
 package com.challengelog.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.challengelog.mapper.*;
-import com.challengelog.pojo.*;
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import com.challengelog.pojo.Challenges;
+import com.challengelog.pojo.Diary;
+import com.challengelog.pojo.Plot;
+import com.challengelog.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.InputStream;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@Repository
 @RequestMapping("/user/diary")
 public class DiaryController {
+
     @Autowired
     DiaryMapper diaryMapper;
 
@@ -36,134 +37,122 @@ public class DiaryController {
 
     @Autowired
     PlotMapper plotMapper;
-    //查询用户所有日记
-    public JSONObject queryDiaryById(@RequestBody JSONObject jsonParam){
-        //根据user_id查询所有日记
-        //定义变量及初始化
-        JSONObject JsonObject = null;
-        List<JSONObject> diaryList = new ArrayList();
-        int user_id = jsonParam.getInteger("user_id");
-        //查询
 
 
-        //返回结果
-        /*
-        if() {
+    @RequestMapping()
+    public String queryDiaryByUserId(@RequestBody JSONObject jsonObject) {
+        int user_id = jsonObject.getInteger("user_id");
+        List<Diary> diaryList = diaryMapper.queryDiaryByUserId(jsonObject.getInteger("user_id"));
+//        JSONArray diarylist =  JSONObject.parseArray(JSONObject.toJSONString(diaryMapper.queryDiaryByUserId(jsonObject.getInteger("user_id"))));
+        ArrayList<JSONObject> res = new ArrayList<>();
+        for (Diary diary:diaryList
+             ) {
+//            System.out.println(diary);
+            JSONObject temp = new JSONObject();
+//            HashMap<String, String> temp = new HashMap<>();
+//            System.out.println(plotMapper.queryPlotById());
+            temp.put("content", plotMapper.queryPlotById(diary.getContent_plot_id()).getContent());
+            if (diary.getContent_userdefine() == null) {
+                temp.put("content_userdefine", "Null");
+            }else{
+                temp.put("content_userdefine", diary.getContent_userdefine());
+            }
+            temp.put("time",diary.getTime().toString());
+            temp.put("title", "temp");
+            temp.put("diary_id",String.valueOf(diary.getId()));
 
+            res.add(temp);
         }
-        */
-        return JsonObject;
+
+        return res.toString();
     }
 
-
-    //添加自定义日记
-    @RequestMapping("/add")
-    public JSONObject addDiary(@RequestBody JSONObject jsonParam){
-
-        //定义变量及初始化
-        JSONObject jsonObject = null;
-        int user_id = jsonParam.getInteger("user_id");
-        String title = jsonParam.getString("title");
-        String content = jsonParam.getString("content");
-        //插入
-
-
-        //返回结果
-        /*
-        if(){
-            jsonObject.put("status",true);
-            jsonObject.put("msg","添加自定义日志成功");
-            jsonObject.put("diary_id",);
-            jsonObject.put("time",);
-        }
-        else{
-            jsonObject.put("status",false);
-            jsonObject.put("msg","添加失败");
-        }
-         */
-        return jsonObject;
-    }
-
-    //修改日记
-    @RequestMapping("/modify")
-    public JSONObject updateDiary(@RequestBody JSONObject jsonParam){
-        //变量定义及初始化
-        int user_id = jsonParam.getInteger("user_id");
-        int diary_id = jsonParam.getInteger("diary_id");
-        String title = jsonParam.getString("title");
-        String content = jsonParam.getString("content");
-        JSONObject jsonObject = null;
-        //修改
-
-
-
-        //返回结果
-        /*
-        if(){
-            jsonObject.put("status",true);
-            jsonObject.put("msg","修改日志成功");
-        }
-        else{
-            jsonObject.put("status",false);
-            jsonObject.put("msg","修改失败");
-
-        }
-        */
-        return jsonObject;
-    }
-
-    //生成日记
     @RequestMapping("/generate")
-    public JSONObject generateDiary(@RequestBody JSONObject jsonParam){
-        //变量及初始化
-        int user_id = jsonParam.getInteger("user_id");
-        JSONObject jsonObject = new JSONObject();
-        //查找用户信息
+    public String generatediary(@RequestBody JSONObject jsonObject) {
+        int user_id = jsonObject.getInteger("user_id");
         User user = userMapper.queryUserById(user_id);
+        int current_plot_id = user.getCurrentPlotId();
+        int story_id = user.getCurrentStoryId();
+        List<Challenges> challengesList = challengesMapper.queryChallengesByUserId((user_id));
 
-        int current_plot_id = user.getCurrent_plot_id();
-        //查找用户今日挑战
-        List<Challenges> challenges = challengesMapper.queryChallengesByDate(user_id,new Timestamp(System.currentTimeMillis()));
-
-        //判断今日挑战中是否有未完成的
-        int branch = 1;
-        for(Challenges i:challenges){
-            if(i.getStatus() == false){
-                branch = 0;
-                break;
+        int flag = 1;
+        for (Challenges challenge:challengesList
+             ) {
+            if (challenge.getStatus() == false) {
+                flag = 0;
             }
         }
-        //找到对应情节
-        Plot plot = plotMapper.queryNextPlot(current_plot_id,branch);
-
-        //将找到的情节号设置为用户当前情节号
-        int tmp = userMapper.updateUserPlot(user_id,plot.getId());
-
-        //创建新日记
-        Diary diary = new Diary();
-        diary.setUser_id(user_id);
-        diary.setStory_id(user.getCurrent_story_id());
-        diary.setContent_plot_id(plot.getId());
-        diary.setTime(new Timestamp(System.currentTimeMillis()));
-        diary.setContent_userdefine("剧情："+plot.getContent());
-
-        //System.out.println(diary);
-
-        diary.setId(diaryMapper.insertDiary(diary));
-        //返回结果
-        //System.out.println("*****");
-        if(true){
-            jsonObject.put("diary_id",diary.getId());
-            jsonObject.put("title","日记"+diary.getId());
-            jsonObject.put("time",diary.getTime());
-            jsonObject.put("content",diary.getContent_userdefine());
-        }
-        else{
-            jsonObject.put("status",false);
-            jsonObject.put("msg","生成失败");
+        Plot aplot = null;
+        List<Plot> plotList = plotMapper.queryBranchPlot(current_plot_id);
+        if (plotList.size() < 1) {
+            return "目前没有后续情节了，考虑切换故事";
         }
 
-        return jsonObject;
+        for (Plot plot:plotList
+             ) {
+            System.out.println(plot.getId());
+            if (plot.getBranch() == flag) {
+                aplot = plot;
+            }
+        }
+        if (aplot == null) {
+            aplot = plotList.get(0);
+        }
+        Calendar title = Calendar.getInstance();
+        Diary diary = new Diary(user_id, story_id, "n",aplot.getId());
+        diaryMapper.insertDiary(diary);
+        user.setCurrent_plot_id(aplot.getId());
+        userMapper.updateUser(user);
+        String content = aplot.getContent();
+        JSONObject res = new JSONObject();
+//        HashMap<String, String> res = new HashMap<>();
+        res.put("content", content);
+        res.put("time",diary.getTime().toString());
+        res.put("title", "temp");
+        res.put("diary_id",String.valueOf(diary.getId()));
+        System.out.println(res);
+        return res.toJSONString();
+    }
+
+    @RequestMapping("/add")
+    public String adddiary(@RequestBody JSONObject jsonObject) {
+        int user_id = jsonObject.getInteger("user_id");
+        String title = jsonObject.getString("title");
+        String content = jsonObject.getString("content");
+        Diary diary = new Diary(user_id, title, content);
+        diaryMapper.insertDiary1(diary);
+        System.out.println(diary);
+
+        Integer diary_id = diary.getId();
+        Timestamp timestamp = diary.getTime();
+//        HashMap<String, String> res = new HashMap<>();
+        JSONObject res = new JSONObject();
+        res.put("time", timestamp.toString());
+        res.put("diary_id",diary_id.toString());
+        res.put("msg", "添加自定义日志成功");
+        res.put("status", "true");
+        System.out.println(res);
+        return res.toJSONString();
+    }
+
+
+    @RequestMapping("/modify")
+    public String modifydiary(@RequestBody JSONObject jsonObject) {
+        int user_id = jsonObject.getInteger("user_id");
+        int diary_id = jsonObject.getInteger("diary_id");
+        String title = jsonObject.getString("title");
+        String content = jsonObject.getString("content");
+        Diary diary = new Diary(diary_id, user_id, title, content);
+        diaryMapper.updateDiary(diary);
+        System.out.println(diary);
+
+        Timestamp timestamp = diary.getTime();
+//        HashMap<String, String> res = new HashMap<>();
+        JSONObject res = new JSONObject();
+        res.put("msg", "修改日志成功");
+        res.put("status", "true");
+        System.out.println(res);
+        return res.toJSONString();
     }
 
 }

@@ -4,12 +4,15 @@ import com.challengelog.pojo.Plot;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Mapper
 @Repository
 public interface PlotMapper {
 
     Plot queryPlotById(int id);
 
-    Plot queryNextPlot(int parent_id,int branch);
+    List<Plot> queryBranchPlot(int parent_id);
+
 
 }

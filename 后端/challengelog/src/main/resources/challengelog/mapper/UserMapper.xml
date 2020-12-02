@@ -12,7 +12,7 @@
         from user
         where id = #{id};
     </select>
-    <insert id="insertUser" parameterType="User">
+    <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
         insert into user(open_id, nick_name, avatar_url, gender, create_time, current_story_id)
         values (#{open_id}, #{nick_name},
                 #{avatar_url}, #{gender},
@@ -20,12 +20,20 @@
     </insert>
     <update id="updateUser" parameterType="User">
         update user
-        set current_story_id = #{current_story_id};
+        set current_story_id = #{current_story_id},
+            current_plot_id  = #{current_plot_id}
+        where id = #{id};
+
     </update>
-    <update id="updateUserPlot">
+    <update id="changeCurrentStoryId" parameterType="int">
+        update user
+        set current_story_id = #{story_id}
+        where id = #{user_id};
+    </update>
+    <update id="changeCurrentPlotId" parameterType="int">
         update user
         set current_plot_id = #{current_plot_id}
-        where id = #{id};
+        where id = #{user_id};
     </update>
     <delete id="deleteUserById">
         delete from user where id = #{id};

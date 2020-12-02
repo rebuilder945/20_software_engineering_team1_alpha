@@ -1,21 +1,37 @@
 package com.challengelog.pojo;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class Story {
 
-    int id;
-    String story_name;
-    String description;
-    String cover_url;
-    int plot_begin_node_id;
+    private int id;
+    private String story_name;
+    private String description;
+    private String cover_url;
+    private int plot_begin_node_id;
 
+    public int getId() {
+        return id;
+    }
 
+    public String getStory_name() {
+        return story_name;
+    }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public String getCover_url() {
+        return cover_url;
+    }
+
+    public int getPlot_begin_node_id() {
+        return plot_begin_node_id;
+    }
 }

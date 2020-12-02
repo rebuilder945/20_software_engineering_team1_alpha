@@ -21,8 +21,9 @@ public interface UserMapper {
 
     int updateUser(User user);
 
-    int updateUserPlot(int id,int current_plot_id);
-
     int deleteUserById(int id);
 
+    int changeCurrentStoryId(int user_id, int story_id);
+
+    int changeCurrentPlotId(int user_id, int current_plot_id);
 }
