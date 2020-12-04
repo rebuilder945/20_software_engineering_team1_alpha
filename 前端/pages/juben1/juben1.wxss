@@ -247,3 +247,16 @@ page {
 view{
   color: white;
 }
+.story{
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  padding-top: 15%;
+  font-size: medium;
+  color: blueviolet;
+}
+.companyBox{
+  padding-top: 20%;
+  font-style: oblique;
+  font-size: xx-large;
+
+}

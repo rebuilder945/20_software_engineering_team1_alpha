@@ -1,4 +1,42 @@
-image{
+.swiper{
+  padding: 15rpx;
+}
+.slide-image{
   width: 749rpx;
   height: 328rpx;
 }
+view{
+  /*border: 3rpx solid lightgrey;*/
+  padding-left: 15rpx;
+  padding-top: 15rpx;
+  padding-right: 15rpx;
+  font-size: large;
+  border-width: 2rpx;
+  border-bottom: wheat;
+}
+.story-name{
+  padding-left: 60rpx;
+}
+.icon-url{
+  
+  height: 45rpx;
+  width: 45rpx;
+  position: absolute;
+  margin-top:4px;
+}
+.arrow{
+  width: 10rpx;
+  height: 23rpx;
+  border-top: 2px solid #999;
+  border-right: 2px solid #999;
+  position: absolute;
+  right: 55rpx;
+  transform: rotate(45deg);
+  margin-top:-40rpx;
+  }
+  .null{
+    height: 30rpx;
+  }
+  .add{
+    background-color: blueviolet;
+  }

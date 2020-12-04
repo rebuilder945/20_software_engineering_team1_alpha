@@ -17,11 +17,12 @@
        <!-- 搜索框 -->
          <view class="weui-search-bar__box">
             <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-            <input type="text" class="weui-search-bar__input" placeholder="请输入搜索内容"/>
+            <input bindinput="searchInput" type="text" class="weui-search-bar__input" placeholder="请输入搜索内容"/>
           </view>
     </view>
         <!-- 搜索按钮,调用搜索查询方法 -->
-    <view class="weui-search-bar__cancel-btn" bindtap='search'>搜索</view>
+        <view wx:if="{{nowSearch}}" class="weui-search-bar__cancel-btn" bindtap="searchReturn">返回</view>
+      <view   wx:else class="weui-search-bar__cancel-btn" bindtap='search'>搜索</view>
   </view>
 
     <!--添加栏-->
@@ -50,27 +51,31 @@
       <button formType="submit" style="width:682rpx;border-radius: 34rpx 34rpx 34rpx 34rpx;" class="addButton" bindtap="CreateNewTarget">确定</button>
     </view>
    <!-- 挑战-->
-    <view class="journalss" >
-      <view  wx:for-index="index" wx:for="{{Target}}" wx:key="*this" class="testfor">
+    <view class="journalss">
+      <view  wx:for-index="index" wx:for="{{Target}}" wx:key="*this" class="testfor" bindtap="btp1" data-idx="{{index}}">
         <movable-area class="movA">
           <movable-view 
           direction="horizontal" x="{{item.xmove}}"
-          out-of-bounds="true" class="movV" inertia="true">
+          out-of-bounds="true" class="movV" inertia="true"
+          data-productIndex="{{index}}"
+          bindtouchstart="handleTouchStart"
+          bindtouchend="handleTouchEnd">
             <view class="movie-content-wrapper">
               <text class="challengeTitle">{{item.title}}</text>
               <view>        
-                <text class="challengeTime">{{item.begin_time}}</text>
+                <text class="challengeTime">{{item.end_time}}</text>
               </view>
               <view class="editArea">  
-                <image class="{{editState}}" src="../../image/Image_Edit.jpg" data-id="{{index}}" bindtap="editTarget" data-id="{{index}}"></image> 
-                <icon class="{{completeState}}" wx:if="{{item.status}}" type="success" bindtap="icon_change" data-Challenge="{{item}}" color="white" size="78rpx"></icon>
-                <icon class="{{completeState}}" wx:else type="circle" bindtap="icon_change" size="78rpx" data-Challenge="{{item}}" color="white"></icon>
+                <image class="{{editState}}" src="../../image/Image_Edit.jpg" data-po="{{index}}" bindtap="editTarget" data-edit="{{item}}"></image> 
+                <icon class="{{completeState}}" wx:if="{{item.status}}" type="success" bindtap="icon_change1" data-index="{{index}}" color="white" size="78rpx"></icon>
+                <icon class="{{completeState}}" wx:else type="circle" bindtap="icon_change2" size="78rpx"  data-index="{{index}}" color="white"></icon>
               <!-- <image class="{{completeState}}" src="../../image/Image_complete.png"></image> -->
               </view>
             </view>
           </movable-view>
         </movable-area>
         <view class="delete-btn" data-id="{{index}}" bindtap="handleDeleteProduct">删除</view>
+        <view class="none"></view>
       </view>
     </view>
 </view>

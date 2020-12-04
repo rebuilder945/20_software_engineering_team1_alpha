@@ -2,6 +2,7 @@
 var utils = require('../../utils/util.js');
 import { request } from "../../request/index.js";
 import util from "../../utils/util.js";
+const app = getApp();
 Page({
 
   /**
@@ -11,11 +12,13 @@ Page({
   data: {
     
     time:"",
+    // main_line:{},
     main_line:({
       "story_id":1,
-      "cover_url":"../../image/story.png"
+      "cover_url":"http://m.qpic.cn/psc?/V50RkLYz0YtHf40lah0z3fVlt53AeuCX/ruAMsa53pVQWN7FLK88i5th*wYRa5qye51i2EMBGaRvjjoFq7yZcZRVsrQf66OjrJcNS4BGIZDP1UkRnrPacdc1vF*pP18ytZ2gj7u8zstc!/b&bo=dwGxAAAAAAADB.U!&rf=viewer_4"
     }),
-    logList:([
+    logList:{},
+    logList:[
       {
         "diary_id":"4",
         "title":"日记4",
@@ -40,16 +43,17 @@ Page({
         "time":"2020-1-1",
         "content":"日记内容"
       }
-    ])
+    ]
   },
   /*点击事件*/
   btnTap1:function(event){
-    // console.log(event)
+    console.log(event)
     wx.showModal({
       title: '剧情',
-      content:event.currentTarget.dataset.content,
-      success (res) {
+      content:event.target.dataset.content.content_userdefine+"\n"+event.target.dataset.content.content,
+      success: (res) =>{
         if (res.confirm) {
+
           console.log('用户点击确定')
         } else if (res.cancel) {
           console.log('用户点击取消')
@@ -63,34 +67,48 @@ Page({
    */
   onLoad: function (options) {
     wx.request({
-      url: 'api.imix.cn/',
-      dataType: "JSON",
-      data:{
-        "user_id":1
-      },
+      url: 'https://api.iminx.cn/user/diary',
       method:"POST",
+      dataType:"JSON",
+      data:{
+        "user_id":app.data.user_id
+      },
       success: (result) => {
         this.setData({
-          logList:result,
+          logList:JSON.parse(result.data).reverse()
         });
+        console.log(result.data)
+        console.log(this.data.logList)
       },
       fail: (res) => {
         console.log("无法获得数据")
       },
       complete: (res) => {},
-    })
+    });
     wx.request({
-      url: 'api.iminx.cn',
-      data:{
-        "user_id":1
-      },
-      dataType:"JSON",
+      url: 'https://api.iminx.cn/user/story/current',
       method:"POST",
+      dataType:"JSON",
+      data:{
+        "user_id":app.data.user_id
+      },
       success:(result)=>{
-        main_line:result
+        var s = JSON.parse(result.data);
+        wx.request({
+          url: 'https://api.iminx.cn/public/story',
+          data:{
+            story_id:s.story_id
+          },
+          dataType:"JSON",
+          method:"POST",
+          success:(results)=>{
+            // this.setData({
+            //   main_line:results.data
+            // });
+          }
+        })
       }
     })
-    console.log(1)
   },
 
   /**
@@ -104,7 +122,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.onLoad();
   },
 
   /**
@@ -150,9 +168,9 @@ Page({
   //   ctx.draw();
   // },
   edit_log:function (event) {
-    // console.log(event)
+    console.log(event)
     wx.navigateTo({
-      url: 'edit_log?'+ '&title=' + event.currentTarget.dataset.item.title + '&time=' + event.currentTarget.dataset.item.time + '&content=' + event.currentTarget.dataset.item.content + '&diary_id=' + event.currentTarget.dataset.item.diary_id
+      url: 'edit_log?'+ '&title=' + event.currentTarget.dataset.item.title + '&time=' + event.currentTarget.dataset.item.time + '&content_userdefine=' + event.currentTarget.dataset.item.content_userdefine + '&diary_id=' + event.currentTarget.dataset.item.diary_id
     })
   }
 

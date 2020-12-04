@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    lists:[]
   },
   onLoad: function (options) {
     var that = this;
@@ -25,6 +25,20 @@ Page({
     stararray: stararray,
     })
     /**生成背景星星-结束 */
+    wx.request({
+      url: 'https://api.iminx.cn/public/story',
+      dataType:"JSON",
+      method:"post",
+      data:{
+        "story_id":1
+      },
+      success:res =>{
+        this.setData({
+          lists:res.data
+        })
+        console.log(this.data.lists)
+      }
+    })
     }
 
   

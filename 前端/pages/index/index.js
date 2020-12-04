@@ -1,14 +1,17 @@
 var util = require('../../utils/util');
+const app = getApp();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    user_id:1,
-    urlf:"http://localhost:8080",
+    xmoveid:-1,
+    user_id:app.data.user_id,
+    searchValue:"",
     say1:"请输入挑战目标",
     say2:"......",
     nowType: 0,
+    nowSearch:false,
     searchState: "noneWxss",
     editState: "noneWxss",
     addState: "noneWxss",
@@ -21,42 +24,12 @@ Page({
         end_time: "2020年4fffffff",
         status:false,
       },
-      {
-        id:1,
-        title: "第二个目标",
-        content: "第二个目标内容",
-        begin_time: "2020年3月",
-        end_time: "2020年4月",
-        status:false,
-      },
-      {
-        id:2,
-        title: "第三个目标",
-        content: "第三个目标内容",
-        begin_time: "2020年3月",
-        end_time: "2020年4月",
-        status:false,
-      },
-      {
-        id:3,
-        title: "第四个目标",
-        content: "第四个目标内容",
-        begin_time: "2020年3月",
-        end_time: "2020年4月",
-        status:false,
-      },
-      {
-        id:4,
-        title: "第五个目标",
-        content: "第五个目标内容",
-        begin_time: "2020-5-173fqwqwf月",
-        end_time: "2020年4月",
-        status:false,
-      }
     ],
+    searchTarget:[],
+    temp:[],
     // Target:[],
     newTarget: {
-      "user_id":"1",
+      "user_id":app.data.user_id,
 	    "title":"第三个挑战",
 	    "content":"洗袜子",
 	    "begin_time":"20150101",
@@ -183,13 +156,14 @@ Page({
       'newTarget.end_time':[this.data.end_date]+" "+[this.data.end_time],
       'addState':'noneWxss'
     })
+    console.log("shabia");
     console.log(this.data.newTarget.begin_time);
     console.log(this.data.newTarget.end_time);
     wx.request({
-      url: 'http://localhost:8080/user/challenges/add', 
+      url: 'https://api.iminx.cn/user/challenges/add', 
       dataType:"JSON",
       data:{
-        user_id:this.data.user_id,
+        user_id:app.data.user_id,
         title:this.data.newTarget.title,
         content:this.data.newTarget.content,
         begin_time:this.data.newTarget.begin_time,
@@ -203,7 +177,13 @@ Page({
         // this.setData({
           // 'Target.push': res.data,
         // })
-        this.data.Target.unshift(this.data.newTarget);
+        console.log(res.data);
+        var returnTarget=JSON.parse(res.data);
+        this.setData({
+          'newTarget.id':returnTarget.challenge_id
+        })
+        var newObj = Object.assign({},this.data.newTarget);
+        this.data.Target.unshift(newObj);
         this.setData({
           Target:this.data.Target,
         })
@@ -220,59 +200,122 @@ Page({
       Target:this.data.Target,
     });*/
   },
+  onShow:function(){
+    this.onLoad();
+    this.setData({
+      editState: "noneWxss",
+      completeState: "journalEdit",
+    })
+  },
   onLoad: function (options) {
+    var that=this;
+    that.setData({
+      user_id:getApp().data.user_id
+    })
+    console.log("woshisb")
+    console.log(this.data.user_id)
     wx.request({
-      url: "http://localhost:8080/user/challenges",
+      url: "https://api.iminx.cn/user/challenges",
       dataType:"JSON",
       data:{
-        "user_id":this.data.user_id,
+        "user_id":app.data.user_id,
       },
       method: "POST",
       success: (res)=>{
         var target = JSON.parse(res.data).reverse();
-        
+        for(var i=0;i<target.length;i++)
+        {
+          target[i].begin_time=util.formatTimeTwo(target[i].begin_time,'Y-M-D h:m');
+          target[i].end_time=util.formatTimeTwo(target[i].end_time,'Y-M-D h:m');
+        };
         this.setData({Target:target});
       },
       fail(res) {
         console.log("fail")
       },
-      complete: function () {
-        console.log("ffff")
-      }
     });
-    // var targettemp= [{"reminder":false,"user_id":1,"end_time":1605813344000,"begin_time":1605813336000,"id":1,"title":"第一个挑战","content":"写亿行代码","status":false},{"reminder":false,"user_id":1,"end_time":0,"begin_time":0,"id":2,"title":"第一个挑战","content":"打亿行代码","status":false},{"reminder":false,"user_id":1,"end_time":0,"begin_time":0,"id":3,"title":"第一个挑战","content":"打亿行代码","status":false},{"reminder":true,"user_id":1,"end_time":20191000,"begin_time":20150000,"id":4,"title":"第三个挑战","content":"洗袜子","status":false},{"reminder":true,"user_id":1,"end_time":20191000,"begin_time":20150000,"id":5,"title":"第三个挑战","content":"洗袜子","status":false},{"reminder":true,"user_id":1,"end_time":20191000,"begin_time":20150000,"id":6,"title":"第三个挑战","content":"洗袜子","status":false},{"reminder":true,"user_id":1,"end_time":20191000,"begin_time":20150000,"id":7,"title":"第三个挑战","content":"洗袜子","status":false}];
-    // this.setData({
-    //  Target:target,
-    // });
-    console.log("new_one");
+
   },
-  icon_change:function(e){
-    var content = e.currentTarget.dataset.challenge;
+  icon_change1:function(e){
+ /*   var num = e.currentTarget.dataset.index;
+    console.log(this.data.Target[num]);
     wx.showModal({
-      title: content.title,
-      content:content.content,
+      title: this.data.Target[num].title,
+      content:this.data.Target[num].content,
+      cancelText:"关闭",
+      confirmText:"取消完成",
+      success: (res) => {
+        if (res.confirm) {
+          // content.status = true;
+          var set = 'Target['+num+'].status';
+          // console.log(this.data.Target[content.id])
+          this.setData({
+            [set]:false
+          }),
+          wx.request({
+            url: 'https://api.iminx.cn/user/challenges/uncomplete',
+            dataType:"JSON",
+            data:{
+              user_id:this.data.user_id,
+              challenge_id:this.data.Target[num].id
+            },
+            method:"POST",
+            complete:(res)=>{
+            }
+          });
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        } 
+      }
+    })*/
+    // var set = 'Target['+content.id+'].status';
+    // // console.log(set)
+    // this.setData({
+    //   'set':content.status
+    // })
+    // console.log(this.data.Target[content.id].status)
+  },
+  icon_change2:function(e){
+    var num = e.currentTarget.dataset.index;
+    console.log(this.data.Target[num]);
+    wx.showModal({
+      title: this.data.Target[num].title,
+      content:this.data.Target[num].content,
       cancelText:"关闭",
       confirmText:"完成挑战",
       success: (res) => {
         if (res.confirm) {
-          content.status = true;
-          var set = 'Target['+(content.id)+'].status';
-          console.log(this.data.Target[content.id])
+          // content.status = true;
+          var set = 'Target['+num+'].status';
+          // console.log(this.data.Target[content.id])
           this.setData({
-            [set]:content.status
+            [set]:true
           }),
           wx.request({
-            url: 'http://localhost:8080/user/challenges/complete',
+            url: 'https://api.iminx.cn/user/challenges/complete',
             dataType:"JSON",
             data:{
               user_id:this.data.user_id,
-              challenge_id:this.data.Target[content.id].id
+              challenge_id:this.data.Target[num].id
             },
             method:"POST",
             complete:(res)=>{
               
+            },
+            
+          });
+          wx.request({
+            url: 'https://api.iminx.cn/user/diary/generate',
+            method:"POST",
+            dataType:"JSON",
+            data:{
+              user_id:app.data.user_id
+            },
+            success:(res)=>{
+              console.log("日志生成成功");
+              console.log(res);
             }
-          })
+          });
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
@@ -287,14 +330,15 @@ Page({
     // console.log(this.data.Target[content.id].status)
   },
   editTarget:function(e){
-    console.log(e.currentTarget.dataset.id);
-    var index=e.currentTarget.dataset.id;
+    console.log(e)
+    console.log(e.currentTarget.dataset.po);
+    var index=e.currentTarget.dataset.po;
     wx.navigateTo({
-      url: '../log/edit_log?'+ '&title=' + this.data.Target[index].title + '&time=' + this.data.Target[index].end_time + '&content=' + this.data.Target[index].content 
+      url: 'edit_log?'+ '&title=' + this.data.Target[index].title +'&begin_time=' + this.data.Target[index].begin_time+ '&end_time=' + this.data.Target[index].end_time + '&content=' + this.data.Target[index].content + '&challenge_id=' + this.data.Target[index].id + '&reminder=' + this.data.Target[index].reminder
     })
     //console.log(e);
     // var app = getApp();
-    // if(e.currentTarget.dataset.isedit=="journalEdit"){
+    // if(e.currentTarget.dataset.isedit=="journalEdit"){edit_log
     //   wx.showModal({
     //     title:"提示",
     //     content:"是否删除",
@@ -321,14 +365,109 @@ Page({
     //   })
     // }
   },
+  setXmove: function (productIndex, xmove) {
+    let productList = this.data.Target
+    productList[productIndex].xmove = xmove
+    this.setData({
+     Target: productList
+    })
+  },
+  showDeleteButton: function (e) {
+    // console.log(13);
+    let productIndex = e.currentTarget.dataset.productindex
+    this.setXmove(productIndex, -70)
+  },
+  hideDeleteButton: function (e) {
+    // console.log(12);
+    let productIndex = e.currentTarget.dataset.productindex
+    this.setXmove(productIndex, 0)
+  },
 
-
+  handleTouchStart(e) {
+    // console.log(1);
+    var xmoveid=this.data.xmoveid;
+    if(xmoveid!=-1)
+    {
+      this.setXmove(this.data.xmoveid,0);
+    }
+    this.setData({
+      xmoveid:e.currentTarget.dataset.productindex,
+    })
+    this.startX = e.touches[0].pageX;
+  },
+  handleTouchEnd(e) {
+    // console.log(111);
+    if(e.changedTouches[0].pageX < this.startX && e.changedTouches[0].pageX - this.startX <= -40) {
+      this.showDeleteButton(e)
+    }  else {
+      this.hideDeleteButton(e)
+    }
+  },
   handleDeleteProduct:function(e)
   {
+    wx.request({
+      url: 'https://api.iminx.cn/user/challenges/delete', 
+      dataType:"JSON",
+      data:{
+        user_id:app.data.user_id,
+        challenge_id:this.data.Target[e.currentTarget.dataset.id].id,
+      },
+      method: "POST",
+      success: (res)=>{
+        console.log("删除成功")
+      },
+      fail(res) {
+        console.log("fail")
+      },
+    });
     this.data.Target.splice(e.currentTarget.dataset.id,1);
-    console.log(this.data.Target);
     this.setData({
       Target:this.data.Target,
+    })
+  },
+  search:function(e)
+  {
+    var searchText=this.data.searchValue;
+    console.log(this.data.searchValue);
+    this.setData({
+      nowSearch:true
+    })
+    this.data.searchTarget.splice(0,this.data.searchTarget.length);
+    for(var i=0;i<this.data.Target.length;i++)
+    {
+      if((this.data.Target[i].title.indexOf(searchText))>=0)
+      {
+        this.data.searchTarget.push(this.data.Target[i])
+      }
+    }
+    this.setData({
+      Target:this.data.searchTarget,
+    });
+  },
+  searchReturn:function(e){
+    this.setData({
+      nowSearch:false
+    })
+    this.onShow();
+  },
+  searchInput:function(e){
+    this.setData({
+      searchValue:e.detail.value
+    })
+  },
+  btp1:function(e){
+    console.log(e.currentTarget.dataset.idx),
+    console.log(this.data.Target[e.currentTarget.dataset.idx]),
+    wx.showModal({
+      title: this.data.Target[e.currentTarget.dataset.idx].title,
+      content:this.data.Target[e.currentTarget.dataset.idx].content,
+      success: (res) =>{
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
     })
   }
 })

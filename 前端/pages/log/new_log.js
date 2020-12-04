@@ -1,5 +1,6 @@
 // pages/log/new_log.js
 var utils = require('../../utils/util.js');
+const app = getApp();
 Page({
 
   /**
@@ -73,24 +74,32 @@ Page({
     var key3 = "time";
     var value1 = event.detail.value.title;
     var value2 = event.detail.value.content;
-    var value3 = utils.formatTime(new Date()).split(' ')[0];
+    // var value3 = utils.formatTime(new Date()).split(' ')[0];
     var key0 = "user_id";
-    var value0 = "1";
+    var value0 = app.data.user_id;
     newLog[key0] = value0;
     newLog[key1] = value1;
     newLog[key2] = value2;
-    newLog[key3] = value3;
+    // newLog[key3] = value3;
     this.setData({
       new_log:newLog
+    });
+    // console.log(this.data.new_log);
+    wx.request({
+      url: 'https://api.iminx.cn/user/diary/add',
+      data:{
+        "user_id":app.data.user_id,
+        "title":value1,
+        "content":value2
+      },
+      datatype:"JSON",
+      method:"POST",
+      success:function(res){
+        console.log(res);
+      }
     })
   },
   transmitNew:function(){
-    wx.request({
-      url: 'api.iminx.cn',
-      data:this.data.new_log,
-      datatype:"JSON",
-      method:"POST",
-      success:function(res){}
-    })
+    console.log(1)
   }
 })

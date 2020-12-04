@@ -1,8 +1,14 @@
+/* page{
+  background-color: #F0F0F0;
+} */
 .buttonArea{
   display: flex;
   justify-content:space-around;
 }
+.none{
 
+  height: 25rpx;
+}
 .all{
   overflow:hidden;
 }
@@ -213,7 +219,7 @@ button {
   position: relative;
   overflow:hidden;
   width: 100vw;
-  border-bottom: 3rpx solid black;
+  border-bottom: 3rpx solid white;
   box-sizing: border-box;
   background: #ffffff;
   z-index: 999;
@@ -232,7 +238,5 @@ button {
   z-index: 1;
   background: #E66671;
   text-align: center;
-  height: 170rpx;
+  height: 200rpx;
 }
-
-

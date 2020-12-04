@@ -13,19 +13,45 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        console.log(res);
         wx.request({
-          url: 'api.iminx.cn',
+          url: 'https://api.iminx.cn/user/login',
           dataType:"JSON",
           data:{
-            code:res.code
+            "code":res.code
           },
           method:"POST",
           success:(res)=>{
-            this.setData({
-              user_id:res.user_id
-            });
-            console.log(user_id)
+            console.log(res);
+            wx.setStorage(
+              {
+                key:"user_id",
+                data:JSON.parse(res.data).user_id
+              }
+            );
+            this.data.user_id = JSON.parse(res.data).user_id;
+            // this.setData({
+            //   user_id:JSON.parse(res.data).user_id
+            // });
+            console.log(JSON.parse(res.data).user_id)
+            // wx.request({
+            //   url: 'https://api.iminx.cn/',
+            //   method:"POST",
+            //   data:{
+            //     "openid":this.data.openid,
+            //     "session_key":this.data.seeeion_key
+            //   },
+            //   dataType:"JSON",
+            //   success:(res)=>{
+            //     console.log(res);
+            //     wx.setStorage({
+            //       data: res.user_id,
+            //       key: 'user_id',
+            //     });
+            //     console.log(this.data.user_id);
+            //   }
+            // })
+            console.log("app.user_id")
+            console.log(this.data.user_id)
           },
           fail:(res)=>{
             console.log("失败")
@@ -56,6 +82,6 @@ App({
   },
   globalData: {
     userInfo: null
-  }
+  } 
   
 })

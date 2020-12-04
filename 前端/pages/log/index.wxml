@@ -1,6 +1,6 @@
 <!-- 主要剧情的入口 -->
 <view class="bkgd">
-  <navigator url="" open-type="switchTab">
+  <navigator url="../juben1/juben1" >
     <image src="{{main_line.cover_url}}" style="height:356rpx;width:100%;"></image>
   </navigator>
 </view>
@@ -23,7 +23,7 @@
   <view class="log_item" wx:for="{{logList}}" wx:key="diary_id">
     <view class="content" bindlongpress="edit_log" data-item="{{item}}">
       <text class="date">{{item.time}}</text>
-      <text class="story" bindtap="btnTap1" data-content="{{item.content}}">{{item.title}}</text>
+      <text class="story" bindtap="btnTap1" data-content="{{item}}">{{item.title}}</text>
     </view>
     <view class="none"></view>
   </view>
