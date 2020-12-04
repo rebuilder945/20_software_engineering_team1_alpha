@@ -1,0 +1,259 @@
+/* page{
+  background-color: #F0F0F0;
+} */
+.buttonArea{
+  display: flex;
+  justify-content:space-around;
+}
+.none{
+
+  height: 25rpx;
+}
+.all{
+  overflow:hidden;
+}
+.journalss{
+  margin-top:60rpx;
+}
+.movie-content-wrapper{
+  background-color:#68ADEF;
+  padding-top: 100rpx;
+}
+.challengeTitle{
+  position: relative;
+  color:white;
+  font-size:40rpx;
+  font-weight:bold;
+  top:-60rpx;
+  left:40rpx;
+}
+.challengeTime{
+  color:white;
+  position: relative;
+  left: 40rpx;
+  top:-40rpx;
+}
+.buttonBackGround{
+  width: 94rpx;
+  height: 94rpx;
+  line-height: 40rpx;
+  border-radius: 34rpx 34rpx 34rpx 34rpx;
+  background-color: rgba(255, 255, 255, 100);
+  color: rgba(249, 255, 255, 100);
+  font-size: 28rpx;
+  text-align: center;
+  box-shadow: 0rpx 6rpx 6rpx 6rpx rgba(0, 0, 0, 0.4);
+  font-family: Arial;
+  border: 2rpx solid rgba(198, 198, 198, 100);
+}
+.buttonImage{
+  position: relative;
+  width: 64rpx;
+  height: 64rpx;
+  top: 16rpx;
+}
+#imageSearch{
+  position: relative;
+  width: 76rpx;
+  height: 76rpx;
+  top: 9rpx;
+}
+.addBackGround{
+  width: 682rpx;
+  height: 422rpx;
+  line-height: 40rpx;
+  border-radius: 34rpx 34rpx 34rpx 34rpx;
+  background-color: rgba(255, 255, 255, 100);
+  color: rgba(255, 255, 255, 100);
+  font-size: 28rpx;
+  text-align: center;
+  font-family: Arial;
+  border: 2rpx solid rgba(198, 198, 198, 100);
+  margin:20rpx auto;
+}
+.noneWxss{
+  display: none;
+}
+/*搜索框css*/
+.weui-search-bar {
+  margin-top: 10rpx;
+  position: relative;
+  padding: 16rpx 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  box-sizing: border-box;
+  background-color: white;
+  border-top: 2rpx solid #ffffff;
+  border-bottom: 2rpx solid #ffffff;
+}
+.weui-icon-search_in-box {
+  position: absolute;
+  left: 20rpx;
+  top: 14rpx;
+}
+.weui-search-bar__form {
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex: auto;
+          flex: auto;
+  border-radius: 10rpx;
+  background: #FFFFFF;
+  border: 2rpx solid #E6E6EA;
+}
+.weui-search-bar__box {
+  position: relative;
+  padding-left: 60rpx;
+  padding-right: 66rpx;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+}
+.weui-search-bar__input {
+  height: 56rpx;
+  line-height: 56rpx;
+  font-size: 28rpx;
+}
+.weui-search-bar__cancel-btn {
+  margin-left: 20rpx;
+  line-height: 56rpx;
+  color: #09BB07;
+  white-space: nowrap;
+}
+
+.addTitle{
+  margin-top: 50rpx;
+  display: flex;
+  justify-content:space-around;
+}
+.addTitleText{
+  position: absolute;
+  font-family: YouYuan;
+  color:#68ADEF;
+  font-size: 40rpx;
+  top:180rpx;
+  left:60rpx;
+}
+.addTitleInput{
+  position: absolute;
+  border-radius: 7px;
+  border: 2rpx solid #E6E6EA;
+  color:black;
+  width: 348rpx;
+  height: 50rpx;
+  top:175rpx;
+  left:335rpx;
+}
+
+.addTimeTitle{
+  font-family: YouYuan;
+  position: absolute;
+  left:60rpx;
+  color:#68ADEF;
+  font-size: 40rpx;
+  top:280rpx;
+}
+.datePicker{
+  border-radius: 7px;
+  position: absolute;
+  left:335rpx;
+  top:270rpx;
+  width: 200rpx;
+  height: 50rpx;
+  border: 2rpx solid #E6E6EA;
+  text-align:center;
+  line-height:54rpx;
+}
+.timePicker{
+  border-radius: 7px;
+  position: absolute;
+  top:270rpx;
+  left:555rpx;
+  width: 130rpx;
+  height: 50rpx;
+  border: 2rpx solid #E6E6EA;
+  text-align:center;
+  line-height:54rpx;
+}
+.addTime{
+  margin-top: 50rpx;
+  display:flex;
+  justify-content:space-around;
+  color:black;
+}
+.addContentInput{
+  border-radius: 7px;
+  position: absolute;
+  top:370rpx;
+  left:335rpx;
+  width: 348rpx;
+  height: 50rpx;
+  border: 2rpx solid #E6E6EA;
+  color:black;
+}
+.addContentText{
+  font-family: YouYuan;
+  position: absolute;
+  left:60rpx;
+  color:#68ADEF;
+  font-size: 40rpx;
+  top:379rpx;
+}
+.addContent{
+  margin-top: 100rpx;
+  display: flex;
+  justify-content:space-around;
+}
+.journalEdit{
+  width: 80rpx;
+  height: 80rpx;
+  position: relative;
+  left: 580rpx;
+  top: -100rpx;
+}
+button {
+  background-color:#68ADEF;
+  color:white;
+} 
+.addButton{
+  position: absolute;
+  top: 470rpx;
+}
+.editArea{
+  position: relative;
+  top:-40rpx;
+}
+.movA{
+  width: 632rpx;
+  height: 170rpx;
+  z-index:999;
+}
+.movV{
+  width: 770rpx;
+  height: 170rpx;
+}
+.testfor{
+  position: relative;
+  overflow:hidden;
+  width: 100vw;
+  border-bottom: 3rpx solid white;
+  box-sizing: border-box;
+  background: #ffffff;
+  z-index: 999;
+
+}
+.delete-btn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0; 
+  width: 150rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  line-height: 120rpx;
+  z-index: 1;
+  background: #E66671;
+  text-align: center;
+  height: 200rpx;
+}

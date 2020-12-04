@@ -1,0 +1,17 @@
+<!--pages/log/new_log.wxml-->
+
+<view class="new_log">
+  <form bindsubmit="create_newLog">
+    <view class="title">
+      <text class="dscp">标题：</text><input type="text" class="add_title" name="title"></input>
+    </view>
+    <view class="none1"></view>
+    <view class="add_content">
+      <textarea placeholder="记录一下新发生的事吧！" value="" name="content"></textarea>
+    </view>
+    <view class="none2"></view>
+    <view class="button">
+      <navigator open-type="switchTab" url="index"><button class="submit" formType="submit" size="mini" bindtap="transmitNew">创建</button></navigator>
+    </view>
+  </form>
+</view>

@@ -1,0 +1,81 @@
+<view class="all">
+  <view class="buttonArea">
+    <view class="buttonBackGround" id="buttonSearch">
+      <image src="../../image/Image_Search.jpg"  class="buttonImage" id="imageSearch" bindtap="changeSearch"></image>
+    </view>
+    <view class="buttonBackGround" id="buttonAdd">
+      <image src="../../image/Image_Add.jpg"  class="buttonImage" id="imageAdd" bindtap="changeAdd"></image>
+    </view>
+    <view class="buttonBackGround" id="buttonEdit">
+      <image src="../../image/Image_Edit.jpg"  class="buttonImage" id="imageEdit" bindtap="changeEdit"></image>
+    </view>
+  </view>
+
+  <!--搜索栏-->
+  <view class="{{searchState}}" > 
+    <view class="weui-search-bar__form"> 
+       <!-- 搜索框 -->
+         <view class="weui-search-bar__box">
+            <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+            <input bindinput="searchInput" type="text" class="weui-search-bar__input" placeholder="请输入搜索内容"/>
+          </view>
+    </view>
+        <!-- 搜索按钮,调用搜索查询方法 -->
+        <view wx:if="{{nowSearch}}" class="weui-search-bar__cancel-btn" bindtap="searchReturn">返回</view>
+      <view   wx:else class="weui-search-bar__cancel-btn" bindtap='search'>搜索</view>
+  </view>
+
+    <!--添加栏-->
+    <view class="{{addState}}">
+      <view class="addTitle">
+        <text class="addTitleText">一个小挑战:</text>
+        <input type="text"  bindinput='GetTargetValueTitle' class="addTitleInput" placeholder="{{say1}}"/>
+      </view>
+      <view class="addTime">
+        <view class="addTimeTitle">截止时间:</view>
+        <picker class="datePicker" mode="date" value="{{end_date}}" start="2015-09-01" end="2030-09-01" bindchange="GetDateChange">
+          <view class="picker">
+            {{end_date}}
+          </view>
+        </picker>
+        <picker class="timePicker" mode="time" value="{{end_time}}" bindchange="GetTimeChange" >
+          <view class="picker">
+            {{end_time}}
+          </view>
+        </picker>
+      </view>
+      <view class="addContent">
+        <text class="addContentText">描述一下:</text>
+        <input type="text"  bindinput='GetTargetValueContent' class="addContentInput" placeholder="{{say2}}"/>
+      </view>
+      <button formType="submit" style="width:682rpx;border-radius: 34rpx 34rpx 34rpx 34rpx;" class="addButton" bindtap="CreateNewTarget">确定</button>
+    </view>
+   <!-- 挑战-->
+    <view class="journalss">
+      <view  wx:for-index="index" wx:for="{{Target}}" wx:key="*this" class="testfor" bindtap="btp1" data-idx="{{index}}">
+        <movable-area class="movA">
+          <movable-view 
+          direction="horizontal" x="{{item.xmove}}"
+          out-of-bounds="true" class="movV" inertia="true"
+          data-productIndex="{{index}}"
+          bindtouchstart="handleTouchStart"
+          bindtouchend="handleTouchEnd">
+            <view class="movie-content-wrapper">
+              <text class="challengeTitle">{{item.title}}</text>
+              <view>        
+                <text class="challengeTime">{{item.end_time}}</text>
+              </view>
+              <view class="editArea">  
+                <image class="{{editState}}" src="../../image/Image_Edit.jpg" data-po="{{index}}" catchtap="editTarget" data-edit="{{item}}"></image> 
+                <icon class="{{completeState}}" wx:if="{{item.status}}" type="success" catchtap="icon_change1" data-index="{{index}}" color="white" size="78rpx"></icon>
+                <icon class="{{completeState}}" wx:else type="circle" catchtap="icon_change2" size="78rpx"  data-index="{{index}}" color="white"></icon>
+              <!-- <image class="{{completeState}}" src="../../image/Image_complete.png"></image> -->
+              </view>
+            </view>
+          </movable-view>
+        </movable-area>
+        <view class="delete-btn" data-id="{{index}}" catchtap="handleDeleteProduct">删除</view>
+        <view class="none"></view>
+      </view>
+    </view>
+</view>

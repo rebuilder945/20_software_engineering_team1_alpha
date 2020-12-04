@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.challengelog.mapper.ChallengesMapper">
+    <select id="queryChallengesById" parameterType="int" resultType="Challenges">
+        select *
+        from challenges
+        where id = #{id};
+    </select>
+    <select id="queryChallengesByUserId" parameterType="int" resultType="Challenges">
+        select *
+        from challenges
+        where user_id = #{user_id};
+    </select>
+    <select id="queryChallengesByUserIdandChallengeId" parameterType="int" resultType="Challenges">
+        select *
+        from challenges
+        where user_id = #{user_id}
+          and id = #{id};
+    </select>
+    <insert id="insertChallenges" parameterType="Challenges" useGeneratedKeys="true" keyProperty="id">
+        insert into challenges(user_id, title, content, begin_time, end_time, status, reminder)
+        values (#{user_id}, #{title}, #{content}, #{begin_time}, #{end_time}, #{status}, #{reminder});
+    </insert>
+    <update id="updateChallenges" parameterType="Challenges">
+        update challenges
+        set title      = #{title},
+            content    = #{content},
+            begin_time = #{begin_time},
+            end_time   = #{end_time},
+            reminder   = #{reminder}
+        where id = #{id};
+    </update>
+    <update id="completeChallenges" parameterType="int">
+        update challenges
+        set status = true
+        where user_id = #{user_id}
+          and id = #{id};
+    </update>
+    <update id="uncompleteChallenges" parameterType="int">
+        update challenges
+        set status = false
+        where user_id = #{user_id}
+          and id = #{id};
+    </update>
+    <delete id="deleteChallengesById" parameterType="int">
+        delete
+        from challenges
+        where id = #{id};
+    </delete>
+</mapper>

@@ -1,0 +1,66 @@
+/* pages/log/edit_log.wxss */
+page{
+  background-color:#F0F0F0;
+}
+.edit_log{
+  padding-top: 10rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+}
+.edit_title{
+  background-color: white;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  height: 60rpx;
+  border-radius: 36rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.edit_time{
+  background-color: white;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  height: 60rpx;
+  border-radius: 36rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.edit_content{
+  background-color: white;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  height: 60rpx;
+  border-radius: 36rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.add_button{
+  display: flex;
+  justify-content: space-around;
+}
+.dscp{
+  font-weight: lighter;
+  font-size: medium;
+}
+.none1{
+  height: 25rpx;
+}
+.none2{
+  height: 15rpx;
+}
+.add_time{
+  width: 411rpx;
+  background-color: honeydew;
+}
+.add_title{
+  background-color: honeydew;
+}
+.add_content{
+  background-color: honeydew;
+}
