@@ -14,12 +14,12 @@
   padding-top: 50px;
   border-radius: 16px;
   margin: 10px;
-  height: 50px;
+  height: 40px;
 }
 .challengeTitle{
   position: relative;
   color:white;
-  font-size:25px;
+  font-size:20px;
   font-weight:bold;
   top:-30px;
   left:20px;
@@ -125,7 +125,8 @@
 }
 .addTitleText{
   color:#68ADEF;
-  font-size: 25px;
+  font-size: 20px;
+  left:25px;
 }
 .addTitleInput{
   border: 1rpx solid #E6E6EA;
@@ -138,7 +139,7 @@
   position: absolute;
   left:25px;
   color:#68ADEF;
-  font-size: 25px;
+  font-size: 20px;
 }
 .datePicker{
   position: absolute;
@@ -176,7 +177,7 @@
   position: absolute;
   left:25px;
   color:#68ADEF;
-  font-size: 25px;
+  font-size: 20px;
 }
 .addContent{
   margin-top: 50px;
@@ -197,6 +198,10 @@ button {
 .addButton{
   position: absolute;
   top: 235px;
+}
+.editArea{
+  position: relative;
+  top:-20px;
 }
 
 
