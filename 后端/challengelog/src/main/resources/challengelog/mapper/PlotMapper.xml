@@ -8,9 +8,9 @@
         from plot
         where id = #{id};
     </select>
-    <select id="queryNextPlot" resultType="Plot">
+    <select id="queryBranchPlot" parameterType="int" resultType="Plot">
         select *
         from plot
-        where parent_id = #{parent_id} and branch = #{branch};
+        where parent_id = #{parent_id};
     </select>
 </mapper>

@@ -5,24 +5,21 @@ import com.challengelog.pojo.Diary;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Timestamp;
-import java.util.*;
+import java.util.List;
 
 @Mapper
 @Repository
 public interface DiaryMapper {
 
-    Diary queryDiaryById();
+    Diary queryDiaryById(int id);
 
-    Diary queryDiaryByUserId(int id);
-
+    List<Diary> queryDiaryByUserId(int user_id);
 
     int insertDiary(Diary diary);
 
-    Diary updateDiary(Diary diary);
+    int insertDiary1(Diary diary);
 
-
+    int updateDiary(Diary diary);
 
     int deleteDiaryById(int id);
-
 }

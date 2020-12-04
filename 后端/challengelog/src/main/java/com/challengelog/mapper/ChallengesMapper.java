@@ -2,11 +2,9 @@ package com.challengelog.mapper;
 
 
 import com.challengelog.pojo.Challenges;
-import com.challengelog.pojo.Diary;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper
@@ -15,11 +13,15 @@ public interface ChallengesMapper {
 
     Challenges queryChallengesById(int id);
 
+    List<Challenges> queryChallengesByUserId(int user_id);
+
     int insertChallenges(Challenges challenges);
 
     int updateChallenges(Challenges challenges);
 
-    List<Challenges> queryChallengesByDate(int user_id, Timestamp today_date);
-
     int deleteChallengesById(int id);
+
+    int completeChallenges(int user_id, int id);
+
+    int uncompleteChallenges(int user_id, int id);
 }
